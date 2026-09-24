@@ -126,6 +126,11 @@
   .src{font-size:.76rem; color:var(--text-muted); font-style:italic; margin-top:6px;}
 
   /* ---- дополнения для этой страницы ---- */
+  .title-row{align-items:center;}
+  .xlink{font-size:.82rem; font-weight:600; color:var(--accent); text-decoration:none; border:1px solid var(--border); border-radius:999px; padding:4px 12px; white-space:nowrap; transition:border-color .15s ease, background .15s ease;}
+  .xlink:hover{border-color:var(--accent); background:var(--accent-soft);}
+  .xlink:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+  @media (max-width:600px){ .xlink{padding:3px 10px; font-size:.78rem;} h1{font-size:1.3rem;} header.top{padding-top:12px;} }
   .prep-img{flex-direction:column; gap:8px;}
   .prep-note p{margin:.35em 0;}
   .prep-note.fn b:first-child{display:block; color:var(--accent-2); margin-bottom:2px;}
@@ -139,6 +144,7 @@
   <header class="top">
     <div class="title-row">
       <h1>Гиста: пищеварительная система</h1>
+      <a class="xlink" href="https://nexylojik.github.io/gista-3semtrain/" target="_blank" rel="noopener">Тренажёр теста ↗</a>
     </div>
     <nav class="tabs" role="tablist">
       <button role="tab" aria-selected="true" data-tab="tem">ТЭМ (10)</button>
