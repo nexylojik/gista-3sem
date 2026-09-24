@@ -1,0 +1,969 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Пищеварительная система — препараты и ТЭМ</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&family=PT+Sans:wght@400;700&family=PT+Mono&display=swap');
+
+  :root{
+    --bg:#FAF6F3; --surface:#FFFFFF; --surface-2:#F1E9EF; --border:#E3D9E2;
+    --text:#241C2E; --text-muted:#6E6478;
+    --accent:#6C4B9E; --accent-soft:#EEE6F6;
+    --accent-2:#C4577A; --accent-2-soft:#FBE7ED;
+    --shadow: 0 1px 2px rgba(36,28,46,.06), 0 6px 20px -8px rgba(36,28,46,.15);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#18141F; --surface:#221C2C; --surface-2:#2B2336; --border:#3B3147;
+      --text:#F0EAF6; --text-muted:#B2A6C2;
+      --accent:#B49AE0; --accent-soft:#332A46;
+      --accent-2:#EB93AC; --accent-2-soft:#3B2632;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px -10px rgba(0,0,0,.5);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#18141F; --surface:#221C2C; --surface-2:#2B2336; --border:#3B3147;
+    --text:#F0EAF6; --text-muted:#B2A6C2;
+    --accent:#B49AE0; --accent-soft:#332A46;
+    --accent-2:#EB93AC; --accent-2-soft:#3B2632;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px -10px rgba(0,0,0,.5);
+  }
+
+  *{box-sizing:border-box;}
+  html{background:var(--bg);}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:'PT Sans', 'Segoe UI', Arial, sans-serif;
+    margin:0; padding:0 16px 72px; line-height:1.55;
+  }
+  .wrap{max-width:840px; margin:0 auto;}
+  h1,h2,h3{font-family:'PT Serif', Georgia, serif; text-wrap:balance; margin:0 0 .3em;}
+  a{color:var(--accent);}
+
+  header.top{position:sticky; top:0; z-index:10; background:var(--bg); padding-top:18px; border-bottom:1px solid var(--border);}
+  .title-row{display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap;}
+  h1{font-size:1.4rem;}
+
+  nav.tabs{display:flex; gap:6px; margin:14px 0 0; overflow-x:auto;}
+  nav.tabs button{
+    font:inherit; font-family:'PT Sans', sans-serif; font-weight:700; font-size:.95rem;
+    background:none; border:none; cursor:pointer; padding:10px 6px 12px;
+    color:var(--text-muted); border-bottom:2px solid transparent; white-space:nowrap;
+  }
+  nav.tabs button[aria-selected="true"]{color:var(--accent); border-bottom-color:var(--accent);}
+  nav.tabs button:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:4px;}
+
+  main{padding-top:22px;}
+  section.panel[hidden]{display:none;}
+
+  .intro{color:var(--text-muted); margin-bottom:18px; font-size:.95rem;}
+
+  .qmode{display:inline-flex; gap:2px; margin-bottom:18px; padding:3px; background:var(--surface-2); border-radius:9px; border:1px solid var(--border);}
+  .qmode-btn{font:inherit; font-family:'PT Sans', sans-serif; font-weight:700; font-size:.85rem; padding:7px 14px; border:none; border-radius:6px; background:transparent; color:var(--text-muted); cursor:pointer;}
+  .qmode-btn[aria-checked="true"]{background:var(--surface); color:var(--accent); box-shadow:var(--shadow);}
+  .qmode-btn:focus-visible{outline:2px solid var(--accent); outline-offset:1px;}
+
+  /* ---- Вопросы ---- */
+  .qgroup{margin-bottom:26px;}
+  .qgroup > h2{font-size:1.15rem; border-bottom:1px solid var(--border); padding-bottom:8px;}
+  details.q{background:var(--surface); border:1px solid var(--border); border-radius:10px; margin-bottom:8px; box-shadow:var(--shadow);}
+  details.q summary{
+    cursor:pointer; padding:13px 16px; font-weight:700; font-family:'PT Serif', serif;
+    list-style:none; display:flex; gap:10px; align-items:baseline;
+  }
+  details.q summary::-webkit-details-marker{display:none;}
+  .qnum{font-family:'PT Mono', monospace; color:var(--accent); font-weight:700; flex:none;}
+  details.q .a{padding:0 16px 16px 42px; color:var(--text);}
+  details.q .a ul{margin:.3em 0; padding-left:1.2em;}
+  details.q .a li{margin-bottom:.3em;}
+  details.q .a li::marker{color:var(--accent);}
+  details.q .a strong{color:var(--accent-2);}
+  .a-full{padding-top:2px;}
+  .a-full p{margin:.5em 0;}
+  #panel-q.mode-full .a-short{display:none;}
+  #panel-q:not(.mode-full) .a-full{display:none;}
+
+  /* ---- Препараты (ТЭМ / цветные) ---- */
+  .prep-grid{display:flex; flex-direction:column; gap:18px;}
+  .prep-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:14px;
+    box-shadow:var(--shadow); overflow:hidden;
+    display:grid; grid-template-columns: 230px 1fr; gap:0;
+  }
+  @media (max-width:600px){ .prep-card{grid-template-columns:1fr;} }
+  .prep-img{background:var(--surface-2); display:flex; align-items:center; justify-content:center; padding:10px;}
+  .prep-img img{max-width:100%; max-height:320px; border-radius:6px; display:block; cursor:zoom-in;}
+
+  .lightbox{position:fixed; inset:0; z-index:100; display:flex; align-items:center; justify-content:center; background:rgba(10,8,14,.96); padding:20px; overscroll-behavior:contain;}
+  .lightbox[hidden]{display:none;}
+  .lightbox-stage{position:relative; width:min(96vw, 1400px); height:min(88dvh, 1400px); background:transparent; overflow:hidden; display:flex; align-items:center; justify-content:center; touch-action:none;}
+  .lightbox-stage img{max-width:none; max-height:none; will-change:transform; user-select:none; -webkit-user-drag:none; border-radius:6px; box-shadow:0 30px 70px -20px rgba(0,0,0,.85);}
+  .lightbox-stage.grabbing img{cursor:grabbing;}
+  .lightbox-stage:not(.grabbing) img{cursor:grab;}
+  .lightbox-bar{position:absolute; left:0; right:0; bottom:0; display:flex; align-items:center; justify-content:center; gap:8px; padding:10px; background:linear-gradient(transparent, rgba(0,0,0,.55)); }
+  .lightbox-bar button{font:inherit; font-family:'PT Mono', monospace; font-size:.85rem; font-weight:700; border:1px solid rgba(255,255,255,.35); background:rgba(255,255,255,.08); color:#fff; border-radius:6px; width:34px; height:30px; cursor:pointer; line-height:1;}
+  .lightbox-bar button:hover{background:rgba(255,255,255,.2);}
+  .lightbox-bar .lightbox-zoom-label{font-family:'PT Mono', monospace; font-size:.8rem; color:#fff; min-width:3.6em; text-align:center;}
+  .lightbox-bar input[type=range]{width:120px;}
+  .lightbox-close{position:absolute; top:10px; right:10px; z-index:2; width:34px; height:34px; border-radius:50%; border:1px solid rgba(255,255,255,.35); background:rgba(0,0,0,.35); color:#fff; font-size:1.1rem; line-height:1; cursor:pointer;}
+  .lightbox-close:hover{background:rgba(0,0,0,.55);}
+  .prep-body{padding:16px 18px;}
+  .prep-title{font-family:'PT Serif', serif; font-size:1.1rem; margin-bottom:2px;}
+  .prep-meta{font-family:'PT Mono', monospace; font-size:.72rem; text-transform:uppercase; letter-spacing:.04em; color:var(--accent); margin-bottom:10px;}
+  .prep-meta.tem{color:var(--accent-2);}
+  .prep-legend{font-size:.92rem; margin:0 0 10px; padding-left:1.1em;}
+  .prep-legend li{margin-bottom:.25em;}
+  .prep-legend li::marker{color:var(--accent);}
+  .prep-note{font-size:.92rem; color:var(--text-muted); border-top:1px dashed var(--border); padding-top:10px;}
+  .prep-note b{color:var(--text);}
+  .src{font-size:.76rem; color:var(--text-muted); font-style:italic; margin-top:6px;}
+
+
+  .wrap{max-width:900px;}
+  .chips{display:flex; flex-wrap:wrap; gap:6px; margin:0 0 22px;}
+  .chip{font-size:.85rem; text-decoration:none; padding:5px 11px; border-radius:999px; background:var(--surface); border:1px solid var(--border); color:var(--text);}
+  .chip span{font-family:'PT Mono', monospace; color:var(--text-muted); font-size:.75rem;}
+  .chip:hover{border-color:var(--accent); color:var(--accent);}
+  h2.group{font-size:1.2rem; margin:30px 0 12px; padding-bottom:8px; border-bottom:1px solid var(--border); scroll-margin-top:120px;}
+  .card{background:var(--surface); border:1px solid var(--border); border-radius:14px; box-shadow:var(--shadow); overflow:hidden; margin-bottom:18px; scroll-margin-top:120px;}
+  .card-imgs{background:var(--surface-2); display:flex; gap:8px; padding:10px; justify-content:center; flex-wrap:wrap;}
+  .card-imgs img{max-width:100%; max-height:380px; border-radius:6px; display:block; cursor:zoom-in; object-fit:contain;}
+  .card-imgs.many img{max-width:calc(50% - 4px); max-height:300px;}
+  @media (max-width:600px){ .card-imgs.many img{max-width:100%;} }
+  .tem-card .card-imgs img{max-height:520px; background:#fff;}
+  .badges{display:flex; gap:6px; flex-wrap:wrap; margin:-4px 0 10px;}
+  .badge{font-family:'PT Mono', monospace; font-size:.7rem; text-transform:uppercase; letter-spacing:.03em; padding:2px 8px; border-radius:5px; background:var(--surface-2); color:var(--text-muted);}
+  .badge.draw{background:var(--accent-soft); color:var(--accent);}
+  .badge.tem{background:var(--accent-2-soft); color:var(--accent-2);}
+  .desc{font-size:.93rem;}
+  .desc p{margin:.25em 0;}
+  .desc p.step{font-weight:700; margin-top:.9em; font-family:'PT Serif', serif;}
+  .desc p.step.draw{color:var(--accent-2);}
+  .desc p.sub{font-weight:700; color:var(--accent); margin-top:.6em;}
+  .desc p.li{padding-left:1.1em; position:relative;}
+  .desc p.li::before{content:"•"; position:absolute; left:.2em; color:var(--accent);}
+  ol.plain{list-style:none; padding-left:0;}
+  ol.plain li{display:flex; gap:8px; align-items:baseline;}
+  .ln{font-family:'PT Mono', monospace; font-weight:700; color:var(--accent); min-width:1.6em; flex:none; text-align:right;}
+  .fn-head{font-family:'PT Mono', monospace; font-size:.72rem; text-transform:uppercase; letter-spacing:.05em; color:var(--text-muted); margin:14px 0 6px;}
+  .cellfn{background:var(--accent-2-soft); border-left:3px solid var(--accent-2); border-radius:0 8px 8px 0; padding:9px 12px; margin-bottom:8px; font-size:.93rem;}
+  .cellfn-name{font-weight:700; color:var(--accent-2); font-family:'PT Serif', serif;}
+  .tem-card .prep-legend li b{color:var(--text);}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div class="title-row"><h1>Пищеварительная система</h1></div>
+  <nav class="tabs" role="tablist">
+    <button role="tab" data-tab="prep" aria-selected="true">Препараты (34)</button>
+    <button role="tab" data-tab="tem" aria-selected="false">ТЭМ (8)</button>
+  </nav>
+</header>
+<main>
+<section class="panel" id="panel-prep">
+  <p class="intro">Все препараты из папки «Пищеварительная_система» с описаниями из README (hist.yma.ac.ru). Нажмите на фото, чтобы увеличить.</p>
+  <nav class="chips"><a href="#g1" class="chip">Полость рта <span>1–6</span></a><a href="#g7" class="chip">Зуб <span>7–12</span></a><a href="#g13" class="chip">Слюнные железы и миндалина <span>13–15</span></a><a href="#g16" class="chip">Пищевод и желудок <span>16–20</span></a><a href="#g21" class="chip">Кишечник <span>21–27</span></a><a href="#g28" class="chip">Печень и желчный пузырь <span>28–32</span></a><a href="#g33" class="chip">Поджелудочная железа <span>33–34</span></a></nav>
+  <h2 class="group" id="g1">Полость рта</h2>
+<article class="card" id="p1">
+  <div class="card-imgs"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/01_%D0%93%D1%83%D0%B1%D0%B0_%D1%80%D0%B5%D0%B1%D0%B5%D0%BD%D0%BA%D0%B0.jpg" alt="Губа ребенка — фото 1"></div>
+  <div class="prep-body">
+    <div class="prep-title">Губа ребенка</div>
+    <div class="prep-meta">№ 1 · b_01.1. · гематоксилин-эозин</div>
+    <div class="badges"><span class="badge">без зарисовки</span></div>
+    <div class="desc"><p class="step">Изучить основные отделы губы (зоны перехода кожного покрова в слизистую оболочку пищеварительного тракта):</p>
+<p class="li">кожный отдел - образован кожей, покрытой многослойным плоским ороговевающим эпителием; содержит волосы, потовые и сальные железы;</p>
+<p class="li">промежуточный отдел (красная кайма) - характеризуется утолщенным эпителием, в котором сохраняется тонкий прозрачный роговой слой; собственная пластинка слизистой образует высокие сосочки с густой сетью гемокапиллярных петель, просвечивающих через эпителий (обеспечивает характерный цвет губ);</p>
+<p class="li">слизистый отдел - представлен слизистой оболочкой, выстланной толстым пластом многослойного плоского неороговевающего эпителия, в собственной пластинке расположены сосуды, нервы, жировая ткань и концевые отделы смешанных слизисто-белковых слюнных желез.</p></div>
+  </div>
+</article>
+<article class="card" id="p2">
+  <div class="card-imgs"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/02_%D0%AF%D0%B7%D1%8B%D0%BA_%D0%B2%D0%B5%D1%80%D1%85%D1%83%D1%88%D0%BA%D0%B0.jpg" alt="Язык: верхушка — фото 1"></div>
+  <div class="prep-body">
+    <div class="prep-title">Язык: верхушка</div>
+    <div class="prep-meta">№ 2 · b_02.1. · сагиттальный срез, гематоксилин-эозин</div>
+    <div class="badges"><span class="badge draw">зарисовать</span></div>
+    <div class="desc"><p class="step">Найти слизистую оболочку, выстилающую верхнюю и нижнюю поверхности, а также мышечную основу языка (образована волокнами поперечнополосатой мышечной ткани соматического типа):</p>
+<p class="sub">верхняя поверхность:</p>
+<p class="li">покрыта слизистой оболочкой (многослойный плоский частично ороговевающий эпителий и собственная пластинка);</p>
+<p class="li">содержит многочисленные мелкие нитевидные сосочки (имеют конусовидную форму и покрыты многослойным эпителием, тонкий роговой слой которого образует заостренные выступы) и лежащие поодиночке между ними грибовидные сосочки (имеют узкое основание и расширенную вершину, особенно многочисленны в кончике языка);</p>
+<p class="li">в слизистой нижней поверхности языка выделяют многослойный плоский неороговевающий эпителий, собственную пластинку и подслизистую основу (определяет подвижность оболочки).</p>
+<p class="step draw">Зарисовать участок верхней поверхности языка и обозначить:</p>
+<ol class="prep-legend plain"><li><span class="ln">1</span><span>нитевидный сосочек</span></li><li><span class="ln">2</span><span>грибовидный сосочек</span></li><li><span class="ln">3</span><span>многослойный эпителий</span></li><li><span class="ln">4</span><span>собственная пластинка слизистой</span></li><li><span class="ln">5</span><span>волокна поперечнополосатой мышечной ткани</span></li></ol></div>
+  </div>
+</article>
+<article class="card" id="p3">
+  <div class="card-imgs many"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/03_%D0%AF%D0%B7%D1%8B%D0%BA_%D1%81%D0%BF%D0%B8%D0%BD%D0%BA%D0%B0_a.jpg" alt="Язык: спинка — фото 1"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/03_%D0%AF%D0%B7%D1%8B%D0%BA_%D1%81%D0%BF%D0%B8%D0%BD%D0%BA%D0%B0_b.jpg" alt="Язык: спинка — фото 2"></div>
+  <div class="prep-body">
+    <div class="prep-title">Язык: спинка</div>
+    <div class="prep-meta">№ 3 · b_02.2. · гематоксилин-эозин; азан по Гейденгайну</div>
+    <div class="badges"><span class="badge draw">зарисовать</span></div>
+    <div class="desc"><p class="step">Найти слизистую оболочку и мышечную основу языка (образована волокнами поперечнополосатой мышечной ткани соматического типа):</p>
+<p class="sub">слизистая оболочка:</p>
+<p class="li">состоит из многослойного плоского частично ороговевающего эпителия и собственной пластинки, последняя вдается в эпителий вторичными соединительнотканными сосочками и прочно связана с мышечной основой;</p>
+<p class="li">содержит листовидные сосочки (окружены узким просветом, в который открываются выводные протоки слюнных желез; в толще эпителия боковых участков сосочков расположены вкусовые луковицы);</p>
+<p class="li">в собственной пластинке слизистой и мышечной основе языка расположены концевые отделы и выводные протоки слюнных желез.</p>
+<p class="step">Изучить детали строения различных участков спинки языка:</p>
+<p class="li">на поверхности сосочек покрыт частично ороговевающим эпителием, а на боковой поверхности - неороговевающим;</p>
+<p class="li">найти в толще эпителия боковых участков сосочков вкусовые луковицы, каждая открывается вкусовой порой в щель между сосочками;</p>
+<p class="li">секреторые отделы слюнных желез представлены белковыми клетками (сероцитами) с базофильной цитоплазмой и центрально расположенным округлым ядром;</p>
+<p class="li">рядом с секреторными отделами желез встречаются интрамуральные ганглии парасимпатической нервной системы - скопления крупных базофильных нейроцитов, окруженных глиальными клетками-сателлитами.</p>
+<p class="step draw">Зарисовать и обозначить: (гематоксилин-эозин)</p>
+<ol class="prep-legend plain"><li><span class="ln">1</span><span>листовидный сосочек</span></li><li><span class="ln">2</span><span>многослойный эпителий</span></li><li><span class="ln">3</span><span>вкусовые луковицы</span></li><li><span class="ln">4</span><span>вторичные соединительнотканные сосочки</span></li><li><span class="ln">5</span><span>собственная пластинка слизистой</span></li><li><span class="ln">6</span><span>концевые отделы слюнных желез</span></li><li><span class="ln">7</span><span>выводной проток слюнной железы</span></li><li><span class="ln">8</span><span>волокна поперечнополосатой мышечной ткани</span></li><li><span class="ln">9</span><span>интрамуральный ганглий</span></li></ol></div>
+  </div>
+</article>
+<article class="card" id="p4">
+  <div class="card-imgs"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/04_%D0%A1%D0%BE%D1%81%D0%BE%D1%87%D0%BA%D0%B8_%D1%8F%D0%B7%D1%8B%D0%BA%D0%B0.jpg" alt="Сосочки языка — фото 1"></div>
+  <div class="prep-body">
+    <div class="prep-title">Сосочки языка</div>
+    <div class="prep-meta">№ 4 · b_02.3. · гематоксилин-эозин, азан по Гейденгайну</div>
+    <div class="badges"><span class="badge">без зарисовки</span></div>
+    <div class="desc"><p class="step">Эпителий и собственная пластинка слизистой оболочки совместно образуют особые выступы — сосочки языка:</p>
+<p class="li">в их основе лежит соединительная ткань собственной пластинки, вдающаяся в эпителий в виде первичных и отходящих от них вторичных соединительнотканных сосочков;</p>
+<p class="sub">в зависимости от формы выростов различают четыре основных вида сосочков:</p>
+<p class="li">нитевидные (имеют форму заостренных выступов) [1];</p>
+<p class="li">грибовидные (представлены куполообразными выступами слизистой) [2];</p>
+<p class="li">листовидные (образованы параллельными складками слизистой) [3];</p>
+<p class="li">желобоватые (окруженные валом) [4];</p>
+<p class="li">с поверхности соединительнотканные сосочки покрыты многослойным плоским эпителием (нитевидные — ороговевающим, остальные — неороговевающим);</p>
+<p class="li">в многослойном плоском неороговевающем эпителии листовидных и желобоватых сосочков имеются вкусовые луковицы, образованные — специализированными сенсорными эпителиоцитами.</p></div>
+  </div>
+</article>
+<article class="card" id="p5">
+  <div class="card-imgs"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/05_%D0%A2%D0%B2%D0%B5%D1%80%D0%B4%D0%BE%D0%B5_%D0%BD%D0%B5%D0%B1%D0%BE.jpg" alt="Твердое небо — фото 1"></div>
+  <div class="prep-body">
+    <div class="prep-title">Твердое небо</div>
+    <div class="prep-meta">№ 5 · b_03.1. · гематоксилин-эозин</div>
+    <div class="badges"><span class="badge">без зарисовки</span></div>
+    <div class="desc"><p class="step">Изучить строение твердого неба - участка слизистой оболочки ротовой полости, неподвижно сращенного с надкостницей небных костей:</p>
+<p class="li">слизистая оболочка выстлана многослойным плоским ороговевающим эпителием, в который собственная пластинка формирует многочисленные сосочки;</p>
+<p class="li">подслизистая основа содержит скопления жировой ткани, секреторные отделы слизистых небных слюнных желез и срастается с надкостницей.</p></div>
+  </div>
+</article>
+<article class="card" id="p6">
+  <div class="card-imgs"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/06_%D0%9C%D1%8F%D0%B3%D0%BA%D0%BE%D0%B5_%D0%BD%D0%B5%D0%B1%D0%BE.jpg" alt="Мягкое небо — фото 1"></div>
+  <div class="prep-body">
+    <div class="prep-title">Мягкое небо</div>
+    <div class="prep-meta">№ 6 · b_03.2. · гематоксилин-эозин</div>
+    <div class="badges"><span class="badge">без зарисовки</span></div>
+    <div class="desc"><p class="step">Изучить строение мягкого неба - складки слизистой оболочки, отделяющей ротовую полость от глотки:</p>
+<p class="li">ротоглоточная (передняя) часть - слизистая оболочка выстлана многослойным плоским неороговевающим эпителием, собственная пластинка формирует сосочки, подслизистая основа содержит секреторные отделы слизистых слюнных желез;</p>
+<p class="li">волокнисто-мышечная основа образована пучками поперечнополостатых соматических мышечных волокон окруженными переплетающимися эластическими волокнами;</p>
+<p class="li">носоглоточная (задняя) часть - слизистая оболочка выстлана многрядным мерцательным эпителием, собственная пластинка содержит концевые отделы слизистых желез.</p></div>
+  </div>
+</article><h2 class="group" id="g7">Зуб</h2>
+<article class="card" id="p7">
+  <div class="card-imgs"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/07_%D0%A4%D0%BE%D1%80%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5_%D0%B7%D1%83%D0%B1%D0%BD%D1%8B%D1%85_%D0%B7%D0%B0%D1%87%D0%B0%D1%82%D0%BA%D0%BE%D0%B2_%D1%81%D1%82%D0%B0%D0%B4%D0%B8%D1%8F_%D1%88%D0%B0%D0%BF%D0%BE%D1%87%D0%BA%D0%B8.jpg" alt="Формирование зубных зачатков: стадия &quot;шапочки&quot; — фото 1"></div>
+  <div class="prep-body">
+    <div class="prep-title">Формирование зубных зачатков: стадия &quot;шапочки&quot;</div>
+    <div class="prep-meta">№ 7 · b_04.1. · гематоксилин-эозин</div>
+    <div class="badges"><span class="badge draw">зарисовать</span></div>
+    <div class="desc"><p class="step">Изучить ранние стадии развития зуба:</p>
+<p class="li">многослойный эпителий ротовой полости зародыша, состоящий из крупных светлых клеток, соединяется узким эпителиальным тяжом (зубной пластинкой) с эпителиальным эмалевым (зубным) органом;</p>
+<p class="li">эмалевый орган представляет светлую двустенную чашу (колпачок), внутри которой эпителий имеет сетчатое строение (пульпа эмалевого органа);</p>
+<p class="li">под чашей виден вдающийся в эмалевый орган зубной сосочек (производное мезенхимы);</p>
+<p class="li">в окружающей зубной орган эмбриональной соединительной ткани найти костные трабекулы (перекладины) стенки формирующейся альвеолы (грубоволокнистая костная ткань).</p>
+<p class="step draw">Зарисовать и обозначить:</p>
+<ol class="prep-legend plain"><li><span class="ln">1</span><span>эпителий ротовой полости</span></li><li><span class="ln">2</span><span>зубная пластинка</span></li><li><span class="ln">3</span><span>эмалевый орган</span></li><li><span class="ln">4</span><span>пульпа эмалевого органа</span></li><li><span class="ln">5</span><span>зубной сосочек</span></li><li><span class="ln">6</span><span>костные трабекулы</span></li></ol></div>
+  </div>
+</article>
+<article class="card" id="p8">
+  <div class="card-imgs many"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/08_%D0%A4%D0%BE%D1%80%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5_%D0%B7%D1%83%D0%B1%D0%BD%D1%8B%D1%85_%D0%B7%D0%B0%D1%87%D0%B0%D1%82%D0%BA%D0%BE%D0%B2_%D1%81%D1%82%D0%B0%D0%B4%D0%B8%D1%8F_%D0%BA%D0%BE%D0%BB%D0%BE%D0%BA%D0%BE%D0%BB%D1%8C%D1%87%D0%B8%D0%BA%D0%B0_a.jpg" alt="Формирование зубных зачатков: стадия &quot;колокольчика&quot; — фото 1"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/08_%D0%A4%D0%BE%D1%80%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5_%D0%B7%D1%83%D0%B1%D0%BD%D1%8B%D1%85_%D0%B7%D0%B0%D1%87%D0%B0%D1%82%D0%BA%D0%BE%D0%B2_%D1%81%D1%82%D0%B0%D0%B4%D0%B8%D1%8F_%D0%BA%D0%BE%D0%BB%D0%BE%D0%BA%D0%BE%D0%BB%D1%8C%D1%87%D0%B8%D0%BA%D0%B0_b.jpg" alt="Формирование зубных зачатков: стадия &quot;колокольчика&quot; — фото 2"></div>
+  <div class="prep-body">
+    <div class="prep-title">Формирование зубных зачатков: стадия &quot;колокольчика&quot;</div>
+    <div class="prep-meta">№ 8 · b_04.2. · гематоксилин-эозин</div>
+    <div class="badges"><span class="badge draw">зарисовать</span></div>
+    <div class="desc"><p class="step">Изучить ранние стадии развития зуба:</p>
+<p class="li">многослойный эпителий ротовой полости зародыша, состоящий из крупных светлых клеток, соединяется узким эпителиальным тяжом (зубной пластинкой) с эпителиальным эмалевым (зубным) органом;</p>
+<p class="li">эмалевый орган представляет светлый двустенный зубной бокал, внутри которой эпителий имеет сетчатое строение; вначале он имеет форму шапочки (стадия &quot;шапочки&quot;), а по мере смещения нижних клеток внутрь почки становится похожим на колокольчик (стадия &quot;колокольчика&quot;);</p>
+<p class="li">под чашей виден вдающийся в эмалевый орган зубной сосочек (производное мезенхимы);</p>
+<p class="li">в окружающей зубной орган эмбриональной соединительной ткани найти костные трабекулы (перекладины) стенки формирующейся альвеолы (грубоволокнистая костная ткань).</p>
+<p class="step draw">Зарисовать и обозначить:</p>
+<ol class="prep-legend plain"><li><span class="ln">1</span><span>эпителий ротовой полости</span></li><li><span class="ln">2</span><span>зубная пластинка</span></li><li><span class="ln">3</span><span>эмалевый орган</span></li><li><span class="ln">4</span><span>пульпа эмалевого органа</span></li><li><span class="ln">5</span><span>зубной сосочек</span></li><li><span class="ln">6</span><span>костные трабекулы</span></li></ol></div>
+  </div>
+</article>
+<article class="card" id="p9">
+  <div class="card-imgs many"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/09_%D0%A4%D0%BE%D1%80%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5_%D1%82%D0%BA%D0%B0%D0%BD%D0%B5%D0%B8%CC%86_%D0%B7%D1%83%D0%B1%D0%B0_a.jpg" alt="Формирование тканей зуба — фото 1"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/09_%D0%A4%D0%BE%D1%80%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5_%D1%82%D0%BA%D0%B0%D0%BD%D0%B5%D0%B8%CC%86_%D0%B7%D1%83%D0%B1%D0%B0_b.jpg" alt="Формирование тканей зуба — фото 2"></div>
+  <div class="prep-body">
+    <div class="prep-title">Формирование тканей зуба</div>
+    <div class="prep-meta">№ 9 · b_04.4. · гистогенез</div>
+    <div class="badges"><span class="badge draw">зарисовать</span></div>
+    <div class="desc"><p class="li">(гематоксилин-эозин)</p>
+<p class="li">(азан по Гейденгайну)</p>
+<p class="step">Найти эмалевый орган, твердые ткани и зубной сосочек</p>
+<p class="step">Изучить структуру эмалевого органа и зубного сосочка:</p>
+<p class="sub">в эмалевом органе найти:</p>
+<p class="li">наружные клетки и рыхло расположенные промежуточные клетки пульпы эмалевого органа,</p>
+<p class="li">внутренние клетки - энамелобласты (источник образования эмали);</p>
+<p class="li">на периферии зубного сосочка в 2 - 3 ряда расположен слой высоких призматических дентинобластов (одонтобластов);</p>
+<p class="sub">определить расположенные послойно твердые ткани зуба:</p>
+<p class="li">кнаружи от слоя одонтобластов расположен тонкий слой необызвествленного дентина (розовый цвет), а над ним - более широкая полоса обызвествленного дентина (коричневый цвет);</p>
+<p class="li">под слоем энамелобластов над обызвествленном дентином расположен слой эмали (темно-фиолетовый цвет).</p>
+<p class="step draw">Зарисовать и обозначить:</p>
+<ol class="prep-legend plain"><li><span class="ln">1</span><span>слой одонтобластов</span></li><li><span class="ln">2</span><span>необызвествленный дентин</span></li><li><span class="ln">3</span><span>обызвествленный дентин</span></li><li><span class="ln">4</span><span>эмаль</span></li><li><span class="ln">5</span><span>слой энамелобластов</span></li><li><span class="ln">6</span><span>слой промежуточных клеток эмалевого органа</span></li><li><span class="ln">7</span><span>слой наружных клеток эмалевого органа</span></li></ol></div>
+  </div>
+</article>
+<article class="card" id="p10">
+  <div class="card-imgs many"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/10_%D0%97%D1%83%D0%B1_%D1%87%D0%B5%D0%BB%D0%BE%D0%B2%D0%B5%D0%BA%D0%B0_%D1%81%D1%80%D0%B5%D0%B7_%D0%BF%D0%BE%D1%81%D0%BB%D0%B5_%D0%B4%D0%B5%D0%BA%D0%B0%D0%BB%D1%8C%D1%86%D0%B8%D0%BD%D0%B0%D1%86%D0%B8%D0%B8_a.jpg" alt="Зуб человека (срез после декальцинации) — фото 1"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/10_%D0%97%D1%83%D0%B1_%D1%87%D0%B5%D0%BB%D0%BE%D0%B2%D0%B5%D0%BA%D0%B0_%D1%81%D1%80%D0%B5%D0%B7_%D0%BF%D0%BE%D1%81%D0%BB%D0%B5_%D0%B4%D0%B5%D0%BA%D0%B0%D0%BB%D1%8C%D1%86%D0%B8%D0%BD%D0%B0%D1%86%D0%B8%D0%B8_b.jpg" alt="Зуб человека (срез после декальцинации) — фото 2"></div>
+  <div class="prep-body">
+    <div class="prep-title">Зуб человека (срез после декальцинации)</div>
+    <div class="prep-meta">№ 10 · b_04.5. · срез после декальцинации, гематоксилин-эозин</div>
+    <div class="badges"><span class="badge">без зарисовки</span></div>
+    <div class="desc"><p class="step">Изучить основные структурные элементы зуба:</p>
+<p class="li">коронка зуба выступает над поверхностью десны, корень зуба погружен в костную альвеолу челюсти и прикреплен к ней соединительнотканной периодонтальной связкой (периодонт);</p>
+<p class="li">основу зуба составляет твердая обызвествленная ткань - дентин, который в области коронки покрыт эмалью (при декальцинации не сохраняется !!!), а корня - цементом (обызвествленная ткань зуба, сходная с грубоволокнистой костной тканью);</p>
+<p class="li">внутри зуба в пульпарной камере находится пульпа - образована рыхлой соединительной тканью, богатой кровеносными сосудами и нервами, наружный слой пульпы представлен одонтобластами;</p>
+<p class="li">дентин представлен обызвествленным межклеточным веществом, пронизанным дентинными канальцами.</p></div>
+  </div>
+</article>
+<article class="card" id="p11">
+  <div class="card-imgs"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/11_%D0%97%D1%83%D0%B1_%D1%87%D0%B5%D0%BB%D0%BE%D0%B2%D0%B5%D0%BA%D0%B0_%D1%88%D0%BB%D0%B8%D1%84.jpg" alt="Зуб человека (шлиф) — фото 1"></div>
+  <div class="prep-body">
+    <div class="prep-title">Зуб человека (шлиф)</div>
+    <div class="prep-meta">№ 11 · b_04.7. · шлиф</div>
+    <div class="badges"><span class="badge">без зарисовки</span></div>
+    <div class="desc"><p class="step">Изучить основные структурные элементы зуба.</p>
+<p class="li">Эмаль образована эмалевыми призмами и межпризменным веществом, покрыта кутикулой;</p>
+<p class="li">Дентино-эмальное соединение</p>
+<p class="li">Дентин представлен обызвествленным межклеточным веществом, пронизанным дентинными канальцами:</p>
+<p class="li">Цемент - обызвествленная ткань зуба, сходная с грубоволокнистой костной тканью;</p>
+<p class="li">Пульпа находится внутри зуба в пульпарной камере.</p></div>
+  </div>
+</article>
+<article class="card" id="p12">
+  <div class="card-imgs"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/12_%D0%97%D1%83%D0%B1_%D1%87%D0%B5%D0%BB%D0%BE%D0%B2%D0%B5%D0%BA%D0%B0_%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%B8%D0%B2%D0%B0%D1%8E%D1%89%D0%B8%D0%B8%CC%86_%D0%B0%D0%BF%D0%BF%D0%B0%D1%80%D0%B0%D1%82.jpg" alt="Зуб человека: поддерживающий аппарат — фото 1"></div>
+  <div class="prep-body">
+    <div class="prep-title">Зуб человека: поддерживающий аппарат</div>
+    <div class="prep-meta">№ 12 · b_04.6. · срез после декальцинации, гематоксилин-эозин</div>
+    <div class="badges"><span class="badge draw">зарисовать</span></div>
+    <div class="desc"><p class="step">Изучить основные структурные элементы поддерживающего аппарата зуба (парадонта):</p>
+<p class="sub">цемент - обызвествленная ткань зуба, покрывающая корень; подразделяется на:</p>
+<p class="li">бесклеточный – первичный (располагается на поверхности корней зуба в области цементо-эмалевой границы);</p>
+<p class="li">клеточный - вторичный (состоит из цементоцитов и цементобластов и обызвествленного межклеточного вещества - матрикса) покрывает апикальную часть корня;</p>
+<p class="li">периодонт - связка, удерживающая корень зуба в костной альвеоле, состоит из толстых коллагеновых пучков одним концом вплетающихся в цемент, другим – в альвеолярный отросток, образуя несколько групп;</p>
+<p class="li">стенка зубной альвеолы (лунки) - отдельные ячейки альвеолярного отростка, в котором располагаются зубы;</p>
+<p class="li">десна - часть слизистой оболочки полости рта, непосредственно окружающую зубы.</p>
+<p class="step draw">Зарисовать и обозначить:</p>
+<ol class="prep-legend plain"><li><span class="ln">1</span><span>цемент (а - бесклеточный, б - клеточный)</span></li><li><span class="ln">2</span><span>периодонт</span></li><li><span class="ln">3</span><span>стенка зубной альвеолы</span></li><li><span class="ln">4</span><span>десна</span></li></ol></div>
+  </div>
+</article><h2 class="group" id="g13">Слюнные железы и миндалина</h2>
+<article class="card" id="p13">
+  <div class="card-imgs"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/13_%D0%A1%D0%BB%D1%8E%D0%BD%D0%BD%D1%8B%D0%B5_%D0%B6%D0%B5%D0%BB%D0%B5%D0%B7%D1%8B_%D0%BE%D0%BA%D0%BE%D0%BB%D0%BE%D1%83%D1%88%D0%BD%D0%B0%D1%8F.jpg" alt="Слюнные железы: околоушная — фото 1"></div>
+  <div class="prep-body">
+    <div class="prep-title">Слюнные железы: околоушная</div>
+    <div class="prep-meta">№ 13 · b_05.2. · гематоксилин-эозин</div>
+    <div class="badges"><span class="badge">без зарисовки</span></div>
+    <div class="desc"><p class="step">Околоушная слюнная железа - сложная разветвленная альвеолярная железа, самая крупная (14–28 г) из больших слюнных желез; вырабатывает чисто белковый секрет (железа серозного типа).</p>
+<p class="step">Изучить строение паренхимы и стромы железы.</p>
+<p class="sub">Паренхима:</p>
+<p class="li">серозные (белковые) концевые отделы образованы сероцитами - небольшими конусовидными клетками с базофильной цитоплазмой и центрально расположенным округлым ядром;</p>
+<p class="li">миоэпителиоциты - уплощенные клетки, лежат между базальной мембраной и сероцитами на наружной поверхности ацинусов;</p>
+<p class="li">узкие вставочные отделы (выстланы низкими кубическими или плоскими клетками) и широкие внутридольковые (исчерченные) протоки (выстланы кубическими эпителиоцитами, содержащими базальную исчерченность).</p>
+<p class="sub">Строма:</p>
+<p class="li">представлена соединительнотканной капсулой от которой отходит система трабекул (более толстые разделяют паренхиму органа на доли, более тонкие на дольки);</p>
+<p class="li">трабекулы содержат кровеносные сосуды и междольковые протоки (зависимости от калибра выстланы однослойным столбчатым, двуслойным кубическим и двуслойным столбчатым эпителием);</p>
+<p class="li">прослойки внутридольковой соединительной ткани содержат сеть кровеносных капилляров, многочисленные адипоциты.</p></div>
+  </div>
+</article>
+<article class="card" id="p14">
+  <div class="card-imgs"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/14_%D0%A1%D0%BB%D1%8E%D0%BD%D0%BD%D1%8B%D0%B5_%D0%B6%D0%B5%D0%BB%D0%B5%D0%B7%D1%8B_%D0%BF%D0%BE%D0%B4%D0%BD%D0%B8%D0%B6%D0%BD%D0%B5%D1%87%D0%B5%D0%BB%D1%8E%D1%81%D1%82%D0%BD%D0%B0%D1%8F_%D0%B8_%D0%BF%D0%BE%D0%B4%D1%8A%D1%8F%D0%B7%D1%8B%D1%87%D0%BD%D0%B0%D1%8F.jpg" alt="Слюнные железы: поднижнечелюстная и подъязычная — фото 1"></div>
+  <div class="prep-body">
+    <div class="prep-title">Слюнные железы: поднижнечелюстная и подъязычная</div>
+    <div class="prep-meta">№ 14 · b_05.3. · гематоксилин-эозин</div>
+    <div class="badges"><span class="badge draw">зарисовать</span></div>
+    <div class="desc"><p class="step">Найти фрагменты поднижнечелюстной и подъязычной слюнных желез:</p>
+<p class="li">понижнедчелюстная слюнная железа - сложная альвеолярно-трубчатая разветвленная железа, содержит два вида концевых отделов - белковые (преобладают) и смешанные;</p>
+<p class="li">подъязычная слюнная железа - сложная альвеолярно-трубчатая разветвленная железа, содержит преимущественно слизистые секреторные отделы;</p>
+<p class="li">общий выводной проток расположен вне желез и выстлан многослойным призматическим эпителием.</p>
+<p class="step">Изучить строение секреторных отделов и выводных протоков:</p>
+<p class="li">серозные (белковые) концевые отделы (поднижнечелюстная железа) образованы сероцитами - небольшими конусовидными клетками со слабобазофильной цитоплазмой и центрально расположенным округлым ядром;</p>
+<p class="sub">смешанные концевые отделы (поднижнечелюстная железа):</p>
+<p class="li">наряду с сероцитами, содержат многочисленные мукоциты - слизистые крупные клетки со светлой ячеистой цитоплазмой и уплощенным ядром в базальной части;</p>
+<p class="li">сероциты расположены на периферии ацинусов в виде групп (белковых полулуний);</p>
+<p class="li">слизистые концевые отделы (подъязычная железа) состоят исключительно из мукоцитов;</p>
+<p class="li">миоэпителиоциты - уплощенные клетки, лежат между базальной мембраной и гландулоцитами на наружной поверхности ацинусов;</p>
+<p class="li">в прослойках внутридольковой соединительной ткани расположены узкие вставочные отделы (выстланы низкими кубическими или плоскими клетками) и широкие внутридольковые (исчерченные) протоки (выстланы кубическими эпителиоцитами, содержащими базальную исчерченность).</p>
+<p class="step draw">Зарисовать участки долек обеих желез и обозначить:</p>
+<ol class="prep-legend plain"><li><span class="ln">I</span><span>поднижнечелюстная железа [1 - белковый секреторный отдел (сероциты); 2 - смешанный секреторный отдел (а - мукоциты, б - белковые полулуния / сероциты), 3 - ядро миоэпителиальной клетки, 4 - внутридольковый (исчерченный) проток, 5 – междольковая соединительная ткань]</span></li><li><span class="ln">II</span><span>подъязычная железа [6 - серозный секреторный отдел, 7 - вставочный проток, 8 - внутридольковый (исчерченный) проток]</span></li><li><span class="ln">III</span><span>общий выводной проток</span></li></ol></div>
+  </div>
+</article>
+<article class="card" id="p15">
+  <div class="card-imgs many"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/15_%D0%9D%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F_%D0%BC%D0%B8%D0%BD%D0%B4%D0%B0%D0%BB%D0%B8%D0%BD%D0%B0_a.jpg" alt="Небная миндалина — фото 1"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/15_%D0%9D%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F_%D0%BC%D0%B8%D0%BD%D0%B4%D0%B0%D0%BB%D0%B8%D0%BD%D0%B0_b.jpg" alt="Небная миндалина — фото 2"></div>
+  <div class="prep-body">
+    <div class="prep-title">Небная миндалина</div>
+    <div class="prep-meta">№ 15 · b_06.1. · гематоксилин-эозин</div>
+    <div class="badges"><span class="badge draw">зарисовать</span></div>
+    <div class="desc"><p class="step">Найти скопления лимфоидной ткани в слизистой оболочке и изучить особенности рельефа поверхности - наличие крипт (глубоких ветвящихся вдавлений эпителия в собственную пластинку слизистой):</p>
+<p class="li">стенки крипты покрыты многослойным плоским неороговевающим эпителием, который инфильтрирован лимфоцитами и макрофагами, в просвете крипты видны слущенные эпителиоциты и лейкоциты;</p>
+<p class="li">собственная пластинка слизистой содержит вторичные лимфатические узелки и парафолликулярные участки лимфоидной ткани (межузелковая диффузная лимфоидная ткань);</p>
+<p class="li">соединительнотканная капсула миндалины отделяет лимфоидные образования от подслизистой основы, содержит концевые отделы слизистых слюнных желез (их секрет выводится на поверхность слизистой вне крипт).</p>
+<p class="step draw">Зарисовать и обозначить:</p>
+<ol class="prep-legend plain"><li><span class="ln">1</span><span>крипта</span></li><li><span class="ln">2</span><span>многослойный плоский неороговевающий эпителий</span></li><li><span class="ln">3</span><span>слущивающиеся эпителиоциты и лейкоциты в просвете крипты</span></li><li><span class="ln">4</span><span>собственная пластинка слизистой</span></li><li><span class="ln">5</span><span>вторичные лимфатические узелки</span></li><li><span class="ln">6</span><span>парафолликулярная диффузная лимфоидная ткань</span></li><li><span class="ln">7</span><span>соединительнотканная капсула миндалины</span></li><li><span class="ln">8</span><span>подслизистая основа</span></li></ol></div>
+  </div>
+</article><h2 class="group" id="g16">Пищевод и желудок</h2>
+<article class="card" id="p16">
+  <div class="card-imgs many"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/16_%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%BE%D0%B4_%D0%B2%D0%B5%D1%80%D1%85%D0%BD%D0%B8%D0%B8%CC%86_%D0%BE%D1%82%D0%B4%D0%B5%D0%BB_a.jpg" alt="Пищевод: верхний отдел — фото 1"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/16_%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%BE%D0%B4_%D0%B2%D0%B5%D1%80%D1%85%D0%BD%D0%B8%D0%B8%CC%86_%D0%BE%D1%82%D0%B4%D0%B5%D0%BB_b.jpg" alt="Пищевод: верхний отдел — фото 2"></div>
+  <div class="prep-body">
+    <div class="prep-title">Пищевод: верхний отдел</div>
+    <div class="prep-meta">№ 16 · b_07.1. · гематоксилин-эозин; поперечный срез; продольный срез</div>
+    <div class="badges"><span class="badge draw">зарисовать</span></div>
+    <div class="desc"><p class="step">На поперечном срезе органа найти слизистую, мышечную и адвентициальную оболочки:</p>
+<p class="li">слизистая оболочка образует глубокие продольные складки, состоит из многослойного плоского неороговевающего эпителия, собственнй пластинкой слизистой, мышечной пластинкой слизистой, подслизистой основы;</p>
+<p class="li">мышечная пластинка слизистой образована пучками гладких миоцитов (на препарате срезаны поперечно);</p>
+<p class="li">в подслизистой основе расположениы многочисленные собственные железы, открывающиеся выводными протоками в просвет органа;</p>
+<p class="li">мышечная оболочка состоит из двух слоев поперечноисчерченной мышечной ткани, между ними расположены интрамуральные парасимпатические узлы межмышечного сплетения;</p>
+<p class="li">адвентициальная оболочка содержит рыхлую соединительную ткань, кровеносные сосуды и пучки нервных волокон.</p>
+<p class="step">Изучить, как выглядят структуры стенки пищевода на продольном срезе.</p>
+<p class="step draw">Зарисовать часть стенки пищевода на поперечном срезе, обозначить:</p>
+<ol class="prep-legend plain"><li><span class="ln">I</span><span>слизистая оболочка (1 - многослойный плоский неороговевающий эпителий, 2 - собственная пластинка слизистой, 3 - мышечная пластинка слизистой</span></li><li><span class="ln">II</span><span>подслизистая основа (4 - собственные железы, 5 - выводные протоки собственных желез)</span></li><li><span class="ln">III</span><span>мышечная оболочка (6 - внутренний слой, 7 - наружный слой, 8 - интрамуральный нервный узел)</span></li><li><span class="ln">IV</span><span>адвентициальная оболочка</span></li></ol></div>
+  </div>
+</article>
+<article class="card" id="p17">
+  <div class="card-imgs"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/17_%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%BE%D0%B4_%D0%BD%D0%B8%D0%B6%D0%BD%D0%B8%D0%B8%CC%86_%D0%BE%D1%82%D0%B4%D0%B5%D0%BB.jpg" alt="Пищевод: нижний отдел — фото 1"></div>
+  <div class="prep-body">
+    <div class="prep-title">Пищевод: нижний отдел</div>
+    <div class="prep-meta">№ 17 · b_07.2. · гематоксилин-эозин</div>
+    <div class="badges"><span class="badge">без зарисовки</span></div>
+    <div class="desc"><p class="step">На поперечном срезе органа найти слизистую, мышечную и адвентициальную оболочки:</p>
+<p class="li">слизистая оболочка формирует продольные складки, состоит из многослойного плоского неороговевающего эпителия, собственнй пластинкой слизистой, мышечной пластинкой слизистой, подслизистой основы;</p>
+<p class="li">мышечная пластинка слизистой образована пучками гладких миоцитов (на препарате срезаны поперечно);</p>
+<p class="li">собственные железы в подслизистой основе присутствуют в незначительном количестве;</p>
+<p class="li">мышечная оболочка состоит из двух слоев неисчерченной (гладкой) мышечной ткани (у человека: наружный - продольный, внутренний - циркулярный), между ними расположены интрамуральные парасимпатические узлы межмышечного сплетения;</p>
+<p class="li">адвентициальная оболочка содержит рыхлую волокнистую соединительную ткань, кровеносные сосуды и пучки нервных волокон.</p></div>
+  </div>
+</article>
+<article class="card" id="p18">
+  <div class="card-imgs many"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/18_%D0%9F%D0%B5%D1%80%D0%B5%D1%85%D0%BE%D0%B4_%D0%BF%D0%B8%D1%89%D0%B5%D0%B2%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%B6%D0%B5%D0%BB%D1%83%D0%B4%D0%BE%D0%BA_a.jpg" alt="Переход пищевода в желудок — фото 1"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/18_%D0%9F%D0%B5%D1%80%D0%B5%D1%85%D0%BE%D0%B4_%D0%BF%D0%B8%D1%89%D0%B5%D0%B2%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%B6%D0%B5%D0%BB%D1%83%D0%B4%D0%BE%D0%BA_b.jpg" alt="Переход пищевода в желудок — фото 2"></div>
+  <div class="prep-body">
+    <div class="prep-title">Переход пищевода в желудок</div>
+    <div class="prep-meta">№ 18 · b_08.2. · гематоксилин-эозин</div>
+    <div class="badges"><span class="badge">без зарисовки</span></div>
+    <div class="desc"><p class="step">Найти область перехода пищевода в желудок по стыку двух генетически разнородных эпителиев: многослойного плоского неороговевающего (э.кожного типа) и однослойного призматического (э.кишечного типа), изучить особенности строения слизистой оболочки пищевода и желудка.</p>
+<p class="sub">Пищевод:</p>
+<p class="li">выстлан многослойным плоским неороговевающим эпителием, под которым расположены собственная пластинка слизистой, мышечная пластинка слизистой и подслизистая основа;</p>
+<p class="li">многочиденные слизистые железы локализованы в подслизистой основе;</p>
+<p class="sub">Кардиальный отдел желудка содержит:</p>
+<p class="li">желудочные ямки,</p>
+<p class="li">кардиальные железы в собственной пластинке слизистой, богатой клеточными элементами,</p>
+<p class="li">мышечную пластинку слизистой,</p>
+<p class="li">подслизистую основу (в области перехода могут встречаться секреторные отделы слизистых желез пищевода)</p>
+<p class="li">Мышечная и серозная оболочки пищевода непрерывно продолжаются в составе стенки желудка.</p></div>
+  </div>
+</article>
+<article class="card" id="p19">
+  <div class="card-imgs many"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/19_%D0%96%D0%B5%D0%BB%D1%83%D0%B4%D0%BE%D0%BA_%D1%84%D1%83%D0%BD%D0%B4%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B8%CC%86_%D0%BE%D1%82%D0%B4%D0%B5%D0%BB_a.jpg" alt="Желудок: фундальный отдел — фото 1"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/19_%D0%96%D0%B5%D0%BB%D1%83%D0%B4%D0%BE%D0%BA_%D1%84%D1%83%D0%BD%D0%B4%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B8%CC%86_%D0%BE%D1%82%D0%B4%D0%B5%D0%BB_b.jpg" alt="Желудок: фундальный отдел — фото 2"></div>
+  <div class="prep-body">
+    <div class="prep-title">Желудок: фундальный отдел</div>
+    <div class="prep-meta">№ 19 · b_09.2.</div>
+    <div class="badges"><span class="badge draw">зарисовать</span></div>
+    <div class="desc"><p class="li">(гематоксилин-эозин)</p>
+<p class="li">(гематоксилин-ауранция)</p>
+<p class="step">На микропрепарате [1] изучить строение стенки фундального отдела желудка:</p>
+<p class="li">найти слизистую, мышечную и серозную оболочки;</p>
+<p class="sub">изучить строение слизистой оболочки:</p>
+<p class="li">желудочные складки и ямки, обратив внимание на глубину ямок по отношению к толщине собственной пластинки слизистой в данном отделе желудка;</p>
+<p class="li">найти эпителий, собственную пластинку слизистой с фундальными железами, мышечную пластинку слизистой и подслизистую основу;</p>
+<p class="li">в трубчатых фундальных железах определить шейку, тело и дно.</p>
+<p class="step">На микропрепарате [2] изучить структуру слизистой оболочки, топографию и особенности морфологии собственных желез желудка:</p>
+<p class="li">поверхностные эпителиоциты желудка выстланы однослойным цилиндрическим эпителием , апикальная часть клеток содержит слизистый секрет;</p>
+<p class="li">в слизистой оболочке видны многочисленные вдавления эпителия в собственную пластинку - желудочные ямки (глубиной до 1/3 толщины собственной пластинки слизистой);</p>
+<p class="sub">собственные железы (простые, трубчатые, неразветвленные) содержат:</p>
+<p class="li">главные клетки – базофильные, с округлым ядром, наиболее многочисленны в нижней части тела и дне железы;</p>
+<p class="li">париетальные (обкладочные) экзокриноциты – крупные, оксифильные с округлым ядром, преобладают в области тела и шейки;</p>
+<p class="li">слизистые (добавочные) мукоциты - мелкие, со светлой цитоплазмой и уплощенным ядром, локализуются в теле железы;</p>
+<p class="li">недифференцированные (промежуточные) эпителиоциты - локалиуются в шейке железы, на границе с дном ямок.</p>
+<p class="step draw">Зарисовать участок слизистой, обозначить:</p>
+<ol class="prep-legend plain"><li><span class="ln">I</span><span>собственная пластинка слизистой (1 - железистый эпителий, 2 - фундальные железы, 3 - шейка железы, 4 - тело железы, 5 - дно железы, 6 - главные экзокриноциты, 7 - париетальные экзокриноциты, 8 - недифференцированные эпителиоциты)</span></li><li><span class="ln">II</span><span>мышечная пластинка слизистой</span></li><li><span class="ln">III</span><span>подслизистая основа</span></li></ol></div>
+  </div>
+</article>
+<article class="card" id="p20">
+  <div class="card-imgs many"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/20_%D0%96%D0%B5%D0%BB%D1%83%D0%B4%D0%BE%D0%BA_%D0%BF%D0%B8%D0%BB%D0%BE%D1%80%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B8%CC%86_%D0%BE%D1%82%D0%B4%D0%B5%D0%BB_a.jpg" alt="Желудок: пилорический отдел — фото 1"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/20_%D0%96%D0%B5%D0%BB%D1%83%D0%B4%D0%BE%D0%BA_%D0%BF%D0%B8%D0%BB%D0%BE%D1%80%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B8%CC%86_%D0%BE%D1%82%D0%B4%D0%B5%D0%BB_b.jpg" alt="Желудок: пилорический отдел — фото 2"></div>
+  <div class="prep-body">
+    <div class="prep-title">Желудок: пилорический отдел</div>
+    <div class="prep-meta">№ 20 · b_09.3. · гематоксилин-эозин</div>
+    <div class="badges"><span class="badge draw">зарисовать</span></div>
+    <div class="desc"><p class="step">Найти слизистую, мышечную и серозную оболочки:</p>
+<p class="li">слизистая оболочка выстлана однослойным призматическим железистым эпителием, содержит собственную пластинку слизистой, мышечную пластинку слизистой и подслизистую основу;</p>
+<p class="li">в слизистой оболочке видны многочисленные вдавления эпителия в собственную пластинку - желудочные ямки (глубиной до 1/2 толщины собственной пластинки слизистой);</p>
+<p class="li">в собственной пластинке слизистой найти пилорические железы (состоят из шейки и разветвленных извитых слизистых концевых отделов), обкладочные клетки отсутствуют.</p>
+<p class="step draw">Зарисовать участок слизистой, обозначить:</p>
+<ol class="prep-legend plain"><li><span class="ln">I</span><span>собственная пластинка слизистой (1 - желудочные ямки, 2 - поверхностные эпителиоциты, 3 - шейка пилорической железы, 4 - концевой слизистый отдел)</span></li><li><span class="ln">II</span><span>мышечная пластинка слизистой</span></li><li><span class="ln">III</span><span>подслизистая основа</span></li></ol></div>
+  </div>
+</article><h2 class="group" id="g21">Кишечник</h2>
+<article class="card" id="p21">
+  <div class="card-imgs"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/21_%D0%94%D0%B2%D0%B5%D0%BD%D0%B0%D0%B4%D1%86%D0%B0%D1%82%D0%B8%D0%BF%D0%B5%D1%80%D1%81%D1%82%D0%BD%D0%B0%D1%8F_%D0%BA%D0%B8%D1%88%D0%BA%D0%B0.jpg" alt="Двенадцатиперстная кишка — фото 1"></div>
+  <div class="prep-body">
+    <div class="prep-title">Двенадцатиперстная кишка</div>
+    <div class="prep-meta">№ 21 · b_10.1. · гематоксилин-эозин</div>
+    <div class="badges"><span class="badge">без зарисовки</span></div>
+    <div class="desc"><p class="step">Найти слизистую, мышечную и серозную оболочки:</p>
+<p class="li">рельеф слизистой оболочки: ворсинки (покрытые эпителием выпячивания собственной пластинки в просвет кишки) и крипты (трубчатые углубления эпителия в собственную пластинку на всю ее глубину);</p>
+<p class="li">в эпителии, выстилающим ворсинки и крипты, видны многочисленные бокаловидные экзокриноциты (при данной фиксации окрашены в коричневый цвет);</p>
+<p class="li">собственная пластинка слизистой отделена от подслизистой основы мышечной пластинкой слизистой;</p>
+<p class="li">в подслизистой основе находятся концевые (смешанные слизисто-белковые) отделы дуоденальных желез и лимфоидные фолликулы.</p></div>
+  </div>
+</article>
+<article class="card" id="p22">
+  <div class="card-imgs many"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/22_%D0%A2%D0%BE%D1%89%D0%B0%D1%8F_%D0%BA%D0%B8%D1%88%D0%BA%D0%B0_a.jpg" alt="Тощая кишка — фото 1"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/22_%D0%A2%D0%BE%D1%89%D0%B0%D1%8F_%D0%BA%D0%B8%D1%88%D0%BA%D0%B0_b.jpg" alt="Тощая кишка — фото 2"></div>
+  <div class="prep-body">
+    <div class="prep-title">Тощая кишка</div>
+    <div class="prep-meta">№ 22 · b_11.1. · гематоксилин-эозин</div>
+    <div class="badges"><span class="badge draw">зарисовать</span></div>
+    <div class="desc"><p class="step">Малое увеличение:</p>
+<p class="li">найти слизистую, мышечную и серозную оболочки;</p>
+<p class="li">изучить рельеф слизистой оболочки и научиться дифференцировать на срезе уровень поверхности органа: ворсинки (покрытые эпителием выпячивания собственной пластинки в просвет кишки) и крипты (трубчатые углубления эпителия в собственную пластинку на всю ее глубину);</p>
+<p class="li">обратить внимание на отличия в строении тощей и двенадцатиперстной кишки: более длинные и узкие ворсинки, отсутствие желез в подслизистой основе.</p>
+<p class="step">Большое увеличение - изучить клеточный состав ворсинок и крипт:</p>
+<p class="li">найти в кишечном эпителии столбчатые (каемчатые) и бокаловидные энтероциты, митозы бескаемчатых (недифференцированных) клеток камбиальной зоны (в области дна крипт);</p>
+<p class="li">в рыхлой волокнистой соединительной ткани стромы ворсинки определить подэпителиальную сеть гемокапилляров, а в центре - широкий лимфатический капилляр и продольно ориентированные неисчерченные миоциты;</p>
+<p class="li">обратить внимание на богатство стромы клеточными элементами (лимфоциты, макрофаги, сегментоядерные лейкоциты, тучные клетки).</p>
+<p class="step draw">Зарисовать ворсинку и крипту, учитывая соотношения их размеров и обозначить:</p>
+<ol class="prep-legend plain"><li><span class="ln">I</span><span>кишечная ворсинка (1 – каемчатый энтероцит, 2 – бокаловидный экзокриноцит, 3 - мышцы ворсинки, 4 – кровеносный капилляр, 5 - лимфатический капилляр, 6 - строма ворсинки)</span></li><li><span class="ln">II</span><span>кишечная крипта (7 - митоз недифференцированного бескаемчатого эпителиоцита)</span></li></ol></div>
+  </div>
+</article>
+<article class="card" id="p23">
+  <div class="card-imgs"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/23_%D0%92%D0%BE%D1%80%D1%81%D0%B8%D0%BD%D0%BA%D0%B0_%D1%82%D0%BE%D1%89%D0%B5%D0%B8%CC%86_%D0%BA%D0%B8%D1%88%D0%BA%D0%B8_%D1%83%D0%BB%D1%8C%D1%82%D1%80%D0%B0%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0.jpg" alt="Ворсинка тощей кишки (ультраструктура) — фото 1"></div>
+  <div class="prep-body">
+    <div class="prep-title">Ворсинка тощей кишки (ультраструктура)</div>
+    <div class="prep-meta">№ 23 · b_11.1b. · трансмиссионная электронная микроскопия, х30000</div>
+    <div class="badges"><span class="badge draw">зарисовать</span><span class="badge tem">ЭМ-схема</span></div>
+    <div class="desc"><p class="step">Общая характеристика: :</p>
+<p class="li">эпителиальная выстилка кишечной ворсинки образована столбчатыми (каемчатыми) и бокаловидными энтероцитами;</p>
+<p class="li">многочисленные микроворсинки на апикальной поверхности столбчатых энтероцитов формируют щеточную каемку.</p>
+<p class="step">Обозначения:</p>
+<ol class="prep-legend plain"><li><span class="ln">1</span><span>ядро каемчатого энтероцита</span></li><li><span class="ln">2</span><span>цитоплазма каемчатого энтероцита</span></li><li><span class="ln">3</span><span>щеточная каемка</span></li><li><span class="ln">4</span><span>базальная мембрана</span></li><li><span class="ln">5</span><span>бокаловидный энтероцит</span></li><li><span class="ln">6</span><span>гемокапилляр</span></li><li><span class="ln">7</span><span>просвет лимфатического капилляра</span></li><li><span class="ln">8</span><span>фиброцит</span></li><li><span class="ln">9</span><span>просвет кишки</span></li></ol></div>
+  </div>
+</article>
+<article class="card" id="p24">
+  <div class="card-imgs"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/24_%D0%9F%D0%BE%D0%B4%D0%B2%D0%B7%D0%B4%D0%BE%D1%88%D0%BD%D0%B0%D1%8F_%D0%BA%D0%B8%D1%88%D0%BA%D0%B0_%D1%81%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5_%D0%BB%D0%B8%D0%BC%D1%84%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5_%D1%84%D0%BE%D0%BB%D0%BB%D0%B8%D0%BA%D1%83%D0%BB%D1%8B.jpg" alt="Подвздошная кишка (сгруппированные лимфатические фолликулы) — фото 1"></div>
+  <div class="prep-body">
+    <div class="prep-title">Подвздошная кишка (сгруппированные лимфатические фолликулы)</div>
+    <div class="prep-meta">№ 24 · b_11.4. · гематоксилин-эозин</div>
+    <div class="badges"><span class="badge">без зарисовки</span></div>
+    <div class="desc"><p class="step">Найти слизистую, мышечную и серозную оболочки:</p>
+<p class="li">рельеф слизистой оболочки: длинные узкие ворсинки (покрытые эпителием выпячивания собственной пластинки в просвет кишки) и крипты (трубчатые углубления эпителия в собственную пластинку на всю ее глубину);</p>
+<p class="li">сгруппированные скопления лимфатических узелков (пейеровы бляшки) располагаются в собственной пластинке слизистой и в подслизистой основе;</p>
+<p class="li">в местах расположения пейеровой бляшки ворсинки короткие, неправильной формы, а крипты – неглубокие или отсутствуют.</p></div>
+  </div>
+</article>
+<article class="card" id="p25">
+  <div class="card-imgs many"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/25_%D0%A2%D0%BE%D0%BB%D1%81%D1%82%D0%B0%D1%8F_%D0%BA%D0%B8%D1%88%D0%BA%D0%B0_a.jpg" alt="Толстая кишка — фото 1"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/25_%D0%A2%D0%BE%D0%BB%D1%81%D1%82%D0%B0%D1%8F_%D0%BA%D0%B8%D1%88%D0%BA%D0%B0_b.jpg" alt="Толстая кишка — фото 2"></div>
+  <div class="prep-body">
+    <div class="prep-title">Толстая кишка</div>
+    <div class="prep-meta">№ 25 · b_11.3. · гематоксилин-эозин</div>
+    <div class="badges"><span class="badge draw">зарисовать</span></div>
+    <div class="desc"><p class="step">Малое увеличение:</p>
+<p class="li">найти слизистую, мышечную и серозную оболочки;</p>
+<p class="li">рельеф поверхности слизистой оболочки образован глубокими криптами (трубчатые углубления эпителия в собственную пластинку на всю ее глубину), ворсинки отсутствуют;</p>
+<p class="li">в подслизистой основе встречаются лимфоидные фолликулы, железы отсутствуют.</p>
+<p class="step">Большое увеличение - изучить:</p>
+<p class="li">структуру крипт (трубчатых углублений эпителия в собственную пластинку на всю ее глубину),</p>
+<p class="sub">особенности клеточного состава однослойного призматического каемчатого эпителия:</p>
+<p class="li">наличие призматических каемчатых энтероцитов,</p>
+<p class="li">значительное количество бокаловидных клеток,</p>
+<p class="li">митозы в недифференцированных (безкаемчатых) эпителиоцитах в глубине крипт.</p>
+<p class="step draw">Зарисовать участок слизистой, обозначить:</p>
+<ol class="prep-legend plain"><li><span class="ln">I</span><span>собственная пластинка слизистой (1-крипта, 2 - каемчатые энтероциты, 3 - бокаловидные экзокриноциты, 4 - митозы в недифференцированных эпителиоцитах)</span></li><li><span class="ln">II</span><span>мышечная пластинка слизистой</span></li><li><span class="ln">III</span><span>подслизистая основа (5 – лимфоидный фолликул, 6 - рыхлая соединительная ткань)</span></li></ol></div>
+  </div>
+</article>
+<article class="card" id="p26">
+  <div class="card-imgs"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/26_%D0%A7%D0%B5%D1%80%D0%B2%D0%B5%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BD%D1%8B%D0%B8%CC%86_%D0%BE%D1%82%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%BA.jpg" alt="Червеобразный отросток — фото 1"></div>
+  <div class="prep-body">
+    <div class="prep-title">Червеобразный отросток</div>
+    <div class="prep-meta">№ 26 · b_11.6. · гематоксилин-эозин</div>
+    <div class="badges"><span class="badge">без зарисовки</span></div>
+    <div class="desc"><p class="step">Найти слизистую, мышечную и серозную оболочки:</p>
+<p class="li">слизистая оболочка выстлана призматическими, бокаловиными и малодифференцированными (в глубине крипт) эпителиоцитами;</p>
+<p class="li">собственная пластинка слизистой содержит короткие крипты, а также многочисленные вторичные лимфатические узелки (В-зависимая зона) и межфолликулярные скопления лимфоидной ткани (Т-зависимая зона);</p>
+<p class="li">мышечная оболочка развита слабо, образована внутренним циркулярным и наружным продольным (сплошным) слоем неисчерченной мышечной ткани.</p></div>
+  </div>
+</article>
+<article class="card" id="p27">
+  <div class="card-imgs"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/27_%D0%9F%D1%80%D1%8F%D0%BC%D0%B0%D1%8F_%D0%BA%D0%B8%D1%88%D0%BA%D0%B0.jpg" alt="Прямая кишка — фото 1"></div>
+  <div class="prep-body">
+    <div class="prep-title">Прямая кишка</div>
+    <div class="prep-meta">№ 27 · b_11.7. · гематоксилин-эозин</div>
+    <div class="badges"><span class="badge">без зарисовки</span></div>
+    <div class="desc"><p class="step">На препарате — зона перехода среднего отдела пищеварительной трубки в ее нижний отдел.</p>
+<p class="li">Ампула прямой кишки</p>
+<p class="li">Слизистая оболочка сформирована кишечными криптами с многочисленными каемчатыми колоноцитами и бокаловидными клетками; мышечная пластинка — изначально двуслойная становится однослойной;</p>
+<p class="li">Мышечная оболочка имеет внутренний циркулярный и наружный продольный слои; в зоне перехода в анальный канал утолщена и образует внутренний сфинктер ануса.</p>
+<p class="li">Анальный канал</p>
+<p class="li">Эпителий</p>
+<p class="li">включает резкий переход от однослойного столбчатого (энтодермальный) к многослойному кубическому (эктодермальный), соответствует аноректальной (зубчатой, гребешковой) линии;</p>
+<p class="li">на протяжении переходной и кожной зон канала становится многослойным плоским неороговевающим и затем замещается многослойным плоским ороговевающим;</p>
+<p class="sub">Подслизистая основа:</p>
+<p class="li">в промежуточной зоне — рыхлая соединительная ткань, кровеносные сосуды;</p>
+<p class="li">в кожной зоне замещена дермой, которая содержит сальные железы, волосяные фолликулы.</p>
+<p class="li">Мышечная оболочка</p>
+<p class="li">наружный слой гладких миоцитов постепенно редуцируется и замещается поперечнополосатыми мышечными волокнами промежности (глубокая часть внешнего сфинктера ануса).</p></div>
+  </div>
+</article><h2 class="group" id="g28">Печень и желчный пузырь</h2>
+<article class="card" id="p28">
+  <div class="card-imgs many"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/28_%D0%9F%D0%B5%D1%87%D0%B5%D0%BD%D1%8C_%D1%81%D0%B2%D0%B8%D0%BD%D1%8C%D0%B8_a.jpg" alt="Печень свиньи — фото 1"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/28_%D0%9F%D0%B5%D1%87%D0%B5%D0%BD%D1%8C_%D1%81%D0%B2%D0%B8%D0%BD%D1%8C%D0%B8_b.jpg" alt="Печень свиньи — фото 2"></div>
+  <div class="prep-body">
+    <div class="prep-title">Печень свиньи</div>
+    <div class="prep-meta">№ 28 · b_12.3.</div>
+    <div class="badges"><span class="badge">без зарисовки</span></div>
+    <div class="desc"><p class="li">(гематоксилин-эозин)</p>
+<p class="li">(пикрофуксин по Ван-Гизону)</p>
+<p class="step">Изучить дольчатую структуру печени, научиться определять границы классических печеночных долек:</p>
+<p class="sub">каждая классическая печеночная долька на поперечном срезе:</p>
+<p class="li">имеет шестигранную форму и ограничена по углам триадами междольковых сосудов (артерия, вена и желчный проток);</p>
+<p class="li">дольки разграничены прослойками междольковой соединительной ткани - септами;</p>
+<p class="li">в центре дольки расположена центральная вена (безмышечного типа);</p>
+<p class="li">гепатоциты формируют печеночные пластины (балки), идущие радиально по направлению к центральной вене.</p></div>
+  </div>
+</article>
+<article class="card" id="p29">
+  <div class="card-imgs many"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/29_%D0%9F%D0%B5%D1%87%D0%B5%D0%BD%D1%8C_%D1%87%D0%B5%D0%BB%D0%BE%D0%B2%D0%B5%D0%BA%D0%B0_a.jpg" alt="Печень человека — фото 1"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/29_%D0%9F%D0%B5%D1%87%D0%B5%D0%BD%D1%8C_%D1%87%D0%B5%D0%BB%D0%BE%D0%B2%D0%B5%D0%BA%D0%B0_b.jpg" alt="Печень человека — фото 2"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/29_%D0%9F%D0%B5%D1%87%D0%B5%D0%BD%D1%8C_%D1%87%D0%B5%D0%BB%D0%BE%D0%B2%D0%B5%D0%BA%D0%B0_c.jpg" alt="Печень человека — фото 3"></div>
+  <div class="prep-body">
+    <div class="prep-title">Печень человека</div>
+    <div class="prep-meta">№ 29 · b_12.1.</div>
+    <div class="badges"><span class="badge draw">зарисовать</span></div>
+    <div class="desc"><p class="li">(азан по Гейденгайну)</p>
+<p class="li">(гематоксилин-эозин)</p>
+<p class="li">(гематоксилин-эозин)</p>
+<p class="step">Малое увеличение: изучить сосудистую систему печени, научиться определять границы печеночных долек:</p>
+<p class="li">каждая классическая печеночная долька на поперечном срезе имеет шестигранную форму и ограничена по углам триадами междольковых сосудов (артерия, вена и желчный проток);</p>
+<p class="li">в центре дольки расположена центральная вена (безмышечного типа);</p>
+<p class="li">гепатоциты формируют печеночные пластины (балки), идущие радиально по направлению к центральной вене.</p>
+<p class="step">Большое увеличение - изучить тонкое строение печеночной дольки:</p>
+<p class="li">в печеночной триаде найти междольковые артерию, вену, желчный проток (выслан однослойным кубическим эпителием);</p>
+<p class="li">изучить структуру балок (пластинок) гепатоцитов, подсчитать примерное количество гепатоцитов на всем протяжении балки от триады до центральной вены;</p>
+<p class="li">изучить строение внутридольковых синусоидных капилляров, найти ядра эндотелиоцитов и просвет капилляра.</p>
+<p class="step draw">Зарисовать участок дольки и обозначить:</p>
+<ol class="prep-legend plain"><li><span class="ln">1</span><span>центральная вена</span></li><li><span class="ln">2</span><span>балки гепатоцитов</span></li><li><span class="ln">3</span><span>внутридольковые синусоидные капилляры</span></li><li><span class="ln">4</span><span>междольковая артерия</span></li><li><span class="ln">5</span><span>междольковая вена</span></li><li><span class="ln">6</span><span>междольковый желчный проток</span></li></ol></div>
+  </div>
+</article>
+<article class="card" id="p30">
+  <div class="card-imgs"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/30_%D0%A1%D0%BE%D1%81%D1%83%D0%B4%D0%B8%D1%81%D1%82%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0_%D0%B4%D0%BE%D0%BB%D1%8C%D0%BA%D0%B8_%D0%BF%D0%B5%D1%87%D0%B5%D0%BD%D0%B8.jpg" alt="Сосудистая система дольки печени — фото 1"></div>
+  <div class="prep-body">
+    <div class="prep-title">Сосудистая система дольки печени</div>
+    <div class="prep-meta">№ 30 · b_12.4. · инъекция сосудов берлинской лазурью - желатиной</div>
+    <div class="badges"><span class="badge">без зарисовки</span></div>
+    <div class="desc"><p class="step">Синусоидные капилляры:</p>
+<p class="li">располагаются между балками гепатоцитов и образуют анастомозирующую сеть, несущую кровь от периферии дольки к центру;</p>
+<p class="li">получают смешанную венозно-артериальную кровь; до 80% ее объема поступает к дольке по междольковой вене (система воротной вены), от которой отходят вокругдольковые (септальные) вены, впадающие в синусоиды;</p>
+<p class="li">из синусоидных капилляров кровь собирается в центральную вену и в систему печеночной вены.</p></div>
+  </div>
+</article>
+<article class="card" id="p31">
+  <div class="card-imgs"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/31_%D0%A1%D0%B8%D0%BD%D1%83%D1%81%D0%BE%D0%B8%D0%B4%D0%BD%D1%8B%D0%B8%CC%86_%D0%BA%D0%B0%D0%BF%D0%B8%D0%BB%D0%BB%D1%8F%D1%80_%D0%BF%D0%B5%D1%87%D0%B5%D0%BD%D0%B8_%D1%83%D0%BB%D1%8C%D1%82%D1%80%D0%B0%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0.jpg" alt="Синусоидный капилляр печени (ультраструктура) — фото 1"></div>
+  <div class="prep-body">
+    <div class="prep-title">Синусоидный капилляр печени (ультраструктура)</div>
+    <div class="prep-meta">№ 31 · b_12.2 · трансмиссионная электронная микроскопия, х5300</div>
+    <div class="badges"><span class="badge draw">зарисовать</span><span class="badge tem">ЭМ-схема</span></div>
+    <div class="desc"><p class="step">Общая характеристика:</p>
+<p class="li">синусоидные капилляры - участки печеночной дольки, в которых происходят обменные процессы между протекающей по ним кровью и гепатоцитами,</p>
+<p class="li">высокая интенсивность обмена достигается увеличением поверхности гепатоцитов за счет многочисленных микроворсинок, контактирующих с плазмой крови в вокругсинусоидальном пространстве.</p>
+<p class="step">Обозначения:</p>
+<ol class="prep-legend plain"><li><span class="ln">I</span><span>синусоидный капилляр (1 - эндотелиоциты, 2 - щели между эндотелиоцитами, 3 - звездчатый макрофаг)</span></li><li><span class="ln">II</span><span>вокругсинусоидальное пространство</span></li><li><span class="ln">III</span><span>гепатоцит (4 - микроворсинки)</span></li></ol></div>
+  </div>
+</article>
+<article class="card" id="p32">
+  <div class="card-imgs"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/32_%D0%96%D0%B5%D0%BB%D1%87%D0%BD%D1%8B%D0%B8%CC%86_%D0%BF%D1%83%D0%B7%D1%8B%D1%80%D1%8C_%D1%87%D0%B5%D0%BB%D0%BE%D0%B2%D0%B5%D0%BA%D0%B0.jpg" alt="Желчный пузырь человека — фото 1"></div>
+  <div class="prep-body">
+    <div class="prep-title">Желчный пузырь человека</div>
+    <div class="prep-meta">№ 32 · b_13.1. · гематоксилин-эозин</div>
+    <div class="badges"><span class="badge">без зарисовки</span></div>
+    <div class="desc"><p class="step">Найти слизистую, волокнисто-мышечную и серозную оболочки:</p>
+<p class="li">слизистая оболочка собрана в многочисленные складки и выстлана однослойным призматическим эпителием, поверхность слизистой покрыта фибриллярными и зернистыми структурами - так выглядит желчь при гистологической обработке;</p>
+<p class="li">собственная пластинка слизистой образована рыхлой соединительной тканью с большим количеством сосудов и нервов, содержит углубления покровного эпителия - дивертикулы (инвагинации);</p>
+<p class="li">волокнисто-мышечная оболочка представлена двумя нечетко разграниченными слоями гладких миоцитов, чередующихся с соединительной тканью.</p></div>
+  </div>
+</article><h2 class="group" id="g33">Поджелудочная железа</h2>
+<article class="card" id="p33">
+  <div class="card-imgs many"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/33_%D0%9F%D0%BE%D0%B4%D0%B6%D0%B5%D0%BB%D1%83%D0%B4%D0%BE%D1%87%D0%BD%D0%B0%D1%8F_%D0%B6%D0%B5%D0%BB%D0%B5%D0%B7%D0%B0_%D1%87%D0%B5%D0%BB%D0%BE%D0%B2%D0%B5%D0%BA%D0%B0_a.jpg" alt="Поджелудочная железа человека — фото 1"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/33_%D0%9F%D0%BE%D0%B4%D0%B6%D0%B5%D0%BB%D1%83%D0%B4%D0%BE%D1%87%D0%BD%D0%B0%D1%8F_%D0%B6%D0%B5%D0%BB%D0%B5%D0%B7%D0%B0_%D1%87%D0%B5%D0%BB%D0%BE%D0%B2%D0%B5%D0%BA%D0%B0_b.jpg" alt="Поджелудочная железа человека — фото 2"></div>
+  <div class="prep-body">
+    <div class="prep-title">Поджелудочная железа человека</div>
+    <div class="prep-meta">№ 33 · b_14.1. · гематоксилин-эозин</div>
+    <div class="badges"><span class="badge draw">зарисовать</span></div>
+    <div class="desc"><p class="step">Найти на микропрепарате  [1] основные структурные компоненты органа:</p>
+<p class="li">дольки, образованные секреторными отделами (ацинусами) и системой внутридольковых выводных протоков (экзокринный отдел);</p>
+<p class="li">междольковую соединительную ткань с выводными протоками (выстланы однослойным призматическим эпителием) и кровеносными сосудами;</p>
+<p class="li">панкреатические островки (эндокринный отдел).</p>
+<p class="step">Изучить на микропрепарате  [2]:</p>
+<p class="sub">строение внешнесекреторных концевых отделов (ацинусов):</p>
+<p class="sub">в каждом ациноците (панкреатоците) найти:</p>
+<p class="li">базофильную гомогенную и оксифильную зимогенную зоны,</p>
+<p class="li">вставочные (узкие трубочки, выстланы плоскими или кубическими клетками) и внутридольковые (выстланы кубическим или призматическим эпителием) выносящие протоки;</p>
+<p class="li">структуру эндокринных панкреатических островков - найти эпителиальные клетки (инсулоциты) с округлыми ядрами и вытянутые эндотелиальные клетки капилляров.</p>
+<p class="step draw">Зарисовать и обозначить:</p>
+<ol class="prep-legend plain"><li><span class="ln">I</span><span>экзокринный секреторный отдел (1 - базальная [гомогенная] зона ациноцита, 2 - апикальная [зимогенная] зона ациноцита, 3 - вставочный отдел, 4 - внутридольковый выводной проток)</span></li><li><span class="ln">II</span><span>эндокринный островок (5 - инсулоциты, 6 - ядро эндотелиоцита капилляра)</span></li><li><span class="ln">III</span><span>прослойки междольковой соединительной ткани (7 - междольковый выводной проток)</span></li></ol></div>
+  </div>
+</article>
+<article class="card" id="p34">
+  <div class="card-imgs"><img loading="lazy" src="%D0%9F%D0%B8%D1%89%D0%B5%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0/34_%D0%90%D1%86%D0%B8%D0%BD%D1%83%D1%81_%D0%BF%D0%BE%D0%B4%D0%B6%D0%B5%D0%BB%D1%83%D0%B4%D0%BE%D1%87%D0%BD%D0%BE%D0%B8%CC%86_%D0%B6%D0%B5%D0%BB%D0%B5%D0%B7%D1%8B_%D1%83%D0%BB%D1%8C%D1%82%D1%80%D0%B0%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0.jpg" alt="Ацинус поджелудочной железы (ультраструктура) — фото 1"></div>
+  <div class="prep-body">
+    <div class="prep-title">Ацинус поджелудочной железы (ультраструктура)</div>
+    <div class="prep-meta">№ 34 · b_14.2. · трансмиссионная электронная микроскопия, x13500</div>
+    <div class="badges"><span class="badge draw">зарисовать</span><span class="badge tem">ЭМ-схема</span></div>
+    <div class="desc"><p class="step">Общая характеристика: :</p>
+<p class="li">секреторные экзокринные отделы поджелудочной железы (ацинусы) выстланы однослойным железистым эпителием - ациноцитами (панкреатоцитами);</p>
+<p class="li">базальная часть ациноцитов содержит хорошо развитую гранулярную эндоплазматическую сеть (при световой микроскопии соответствует базофильной гомогенной зоне);</p>
+<p class="li">в апикальной части ациноцитов сконцентированы пластинчатый комплекс и многочисленные секреторные гранулы (при световой микроскопии соответствует оксифильной зимогенной зоне);</p>
+<p class="step">Обозначения: :</p>
+<ol class="prep-legend plain"><li><span class="ln">1</span><span>ядро панкреатоцита</span></li><li><span class="ln">2</span><span>гранулярная эндоплазматическая сеть</span></li><li><span class="ln">3</span><span>митохондрия</span></li></ol>
+<p class="li">4 -пластинчатый комплекс,</p>
+<ol class="prep-legend plain"><li><span class="ln">5</span><span>секреторные гранулы (зимоген)</span></li><li><span class="ln">6</span><span>лизосома</span></li><li><span class="ln">7</span><span>эпителиоцит вставочного отдела</span></li></ol></div>
+  </div>
+</article>
+</section>
+<section class="panel" id="panel-tem" hidden>
+  <p class="intro">Электронные микрофотографии (ТЭМ). К каждому снимку дописана функция клетки и функция каждой обозначенной структуры.</p>
+  
+<article class="card tem-card" id="t1">
+  <div class="card-imgs"><img loading="lazy" src="%D0%A2%D0%AD%D0%9C/01_%D0%92%D1%81%D0%B0%D1%81%D1%8B%D0%B2%D0%B0%D1%8E%D1%89%D0%B0%D1%8F_%D0%BA%D0%B0%D0%B5%D0%BC%D0%BA%D0%B0_16000.png" alt="Апикальная часть эпителиальной клетки кишечной ворсинки. Всасывающая каёмка"></div>
+  <div class="prep-body">
+    <div class="prep-title">Апикальная часть эпителиальной клетки кишечной ворсинки. Всасывающая каёмка</div>
+    <div class="prep-meta tem">ТЭМ · ×16 000 · атлас Родина</div>
+    <div class="fn-head">Функция клетки</div>
+    <div class="cellfn"><div class="cellfn-name">Каёмчатый (столбчатый) энтероцит</div><div>Пристеночное (мембранное) пищеварение и всасывание продуктов расщепления: моносахаридов, аминокислот, жирных кислот и моноглицеридов. В клетке ресинтезируются триглицериды и собираются хиломикроны, которые уходят в лимфатический капилляр ворсинки. Эпителий также служит барьером между просветом кишки и внутренней средой.</div></div>
+    <div class="fn-head">Обозначения и их функция</div>
+    <ol class="prep-legend plain"><li><span class="ln">1</span><span><b>Клеточные микроворсинки, образующие всасывающую каёмку</b> — увеличивают площадь всасывания примерно в 20–40 раз; в гликокаликсе на их поверхности работают ферменты пристеночного пищеварения (дисахаридазы, пептидазы, щелочная фосфатаза)</span></li><li><span class="ln">2</span><span><b>Замыкательная пластинка</b> — плотный контакт у верхушки клеток: герметично «сшивает» соседние энтероциты, поэтому вещества не проходят между клетками, а всасываются только через них; к ней прикрепляется терминальная сеть</span></li><li><span class="ln">3</span><span><b>Границы между клетками</b> — боковые межклеточные контакты (десмосомы, интердигитации) механически связывают эпителий; по межклеточным пространствам всосавшиеся вещества уходят к базальной стороне и в капилляры</span></li><li><span class="ln">4</span><span><b>Митохондрии</b> — дают АТФ для активного транспорта (Na⁺/K⁺-АТФаза, котранспорт глюкозы и аминокислот с Na⁺)</span></li><li><span class="ln">5</span><span><b>Лизосома</b> — внутриклеточное переваривание поглощённых эндоцитозом веществ, аутофагия изношенных органелл</span></li><li><span class="ln">6</span><span><b>Эндоплазматическая сеть</b> — гладкая ЭПС ресинтезирует триглицериды из всосавшихся жирных кислот и моноглицеридов; гранулярная ЭПС синтезирует белки (апопротеины хиломикронов, ферменты гликокаликса)</span></li></ol>
+  </div>
+</article>
+<article class="card tem-card" id="t2">
+  <div class="card-imgs"><img loading="lazy" src="%D0%A2%D0%AD%D0%9C/02_%D0%92%D1%81%D0%B0%D1%81%D1%8B%D0%B2%D0%B0%D1%8E%D1%89%D0%B0%D1%8F_%D0%BA%D0%B0%D0%B5%D0%BC%D0%BA%D0%B0_30000.png" alt="Всасывающая каёмка однослойного цилиндрического эпителия. Клетка ворсинки тонкой кишки"></div>
+  <div class="prep-body">
+    <div class="prep-title">Всасывающая каёмка однослойного цилиндрического эпителия. Клетка ворсинки тонкой кишки</div>
+    <div class="prep-meta tem">ТЭМ · ×30 000 · по Ю. С. Ченцову</div>
+    <div class="fn-head">Функция клетки</div>
+    <div class="cellfn"><div class="cellfn-name">Каёмчатый энтероцит</div><div>Окончательное расщепление пищевых веществ на поверхности клетки (пристеночное пищеварение) и их всасывание в кровь и лимфу.</div></div>
+    <div class="fn-head">Обозначения и их функция</div>
+    <ol class="prep-legend plain"><li><span class="ln">1</span><span><b>Клеточные микроворсинки</b> — пальцевидные выросты цитолеммы с пучком актиновых филаментов внутри; многократно увеличивают всасывающую поверхность и несут ферменты</span></li><li><span class="ln">2</span><span><b>Всасывающая каёмка</b> — совокупность плотно упакованных микроворсинок, покрытых гликокаликсом: здесь адсорбируются ферменты, идёт пристеночное пищеварение; каёмка — ещё и барьер для микробов</span></li><li><span class="ln">3</span><span><b>Дистальный (апикальный) отдел эпителиальной клетки</b> — содержит терминальную сеть (актин, миозин), в которую вплетаются филаменты микроворсинок: опора и укорочение микроворсинок, захват веществ эндоцитозом</span></li><li><span class="ln">4</span><span><b>Просвет тонкой кишки</b> — здесь находится химус и идёт полостное пищеварение ферментами поджелудочного и кишечного сока</span></li></ol>
+  </div>
+</article>
+<article class="card tem-card" id="t3">
+  <div class="card-imgs"><img loading="lazy" src="%D0%A2%D0%AD%D0%9C/03_%D0%93%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F_%D0%BA%D0%BB%D0%B5%D1%82%D0%BA%D0%B0_%D0%B6%D0%B5%D0%BB%D1%83%D0%B4%D0%BA%D0%B0.png" alt="Главная клетка собственной железы желудка"></div>
+  <div class="prep-body">
+    <div class="prep-title">Главная клетка собственной железы желудка</div>
+    <div class="prep-meta tem">ТЭМ · ×13 000 · по Ито</div>
+    <div class="fn-head">Функция клетки</div>
+    <div class="cellfn"><div class="cellfn-name">Главная клетка (пепсиноцит)</div><div>Синтезирует и выделяет пепсиноген: в кислой среде под действием HCl он превращается в пепсин и расщепляет белки. У детей также вырабатывает химозин (створаживает молоко), кроме того — желудочную липазу. Типичная белоксинтезирующая клетка: базофильная база (гранулярная ЭПС), апикальная часть заполнена гранулами зимогена, выделение мерокриновое.</div></div>
+    <div class="fn-head">Обозначения и их функция</div>
+    <ol class="prep-legend plain"><li><span class="ln">1</span><span><b>Клеточные микроворсинки</b> — увеличивают апикальную поверхность, через которую секрет выделяется в просвет железы</span></li><li><span class="ln">2</span><span><b>Замыкательные пластинки</b> — отделяют просвет железы от межклеточных пространств, не пропускают кислый желудочный сок между клетками</span></li><li><span class="ln">3</span><span><b>Гранулы зимогена</b> — запас пепсиногена; выделяются экзоцитозом в просвет железы (мерокриновая секреция)</span></li><li><span class="ln">4</span><span><b>Внутриклеточный сетчатый аппарат (комплекс Гольджи)</b> — созревание, концентрирование и упаковка пепсиногена в секреторные гранулы</span></li><li><span class="ln">5</span><span><b>Эндоплазматическая сеть гранулярного типа</b> — синтез белков-проферментов на рибосомах; из-за неё базальная часть клетки базофильна</span></li><li><span class="ln">6</span><span><b>Базальная мембрана</b> — отделяет эпителий от соединительной ткани, служит опорой и избирательно пропускает вещества из капилляров к клетке</span></li><li><span class="ln">7</span><span><b>Митохондрии</b> — дают энергию для синтеза белка и секреции</span></li></ol>
+  </div>
+</article>
+<article class="card tem-card" id="t4">
+  <div class="card-imgs"><img loading="lazy" src="%D0%A2%D0%AD%D0%9C/04_%D0%90%D1%80%D0%B3%D0%B5%D0%BD%D1%82%D0%BE%D1%84%D0%B8%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D0%BA%D0%BB%D0%B5%D1%82%D0%BA%D0%B0_%D0%B6%D0%B5%D0%BB%D1%83%D0%B4%D0%BA%D0%B0.png" alt="Аргентофильная клетка собственной железы дна желудка"></div>
+  <div class="prep-body">
+    <div class="prep-title">Аргентофильная клетка собственной железы дна желудка</div>
+    <div class="prep-meta tem">ТЭМ · ×16 000 · по Ито</div>
+    <div class="fn-head">Функция клетки</div>
+    <div class="cellfn"><div class="cellfn-name">Аргентофильная (эндокринная, энтероэндокринная) клетка</div><div>Вырабатывает биологически активные вещества и гормоны: ECL-клетки — гистамин (стимулирует обкладочные клетки выделять HCl), EC-клетки — серотонин и мелатонин (моторика, секреция), G-клетки — гастрин, D-клетки — соматостатин (тормозит секрецию). Секрет выделяется базальным полюсом в собственную пластинку и кровь (эндокринно/паракринно), поэтому гранулы сосредоточены у базальной мембраны. Итог — местная регуляция секреции, моторики и кровотока желудка.</div></div>
+    <div class="fn-head">Обозначения и их функция</div>
+    <ol class="prep-legend plain"><li><span class="ln">1</span><span><b>Эндоплазматическая сеть</b> — синтез пептидных гормонов и ферментов, образующих биогенные амины</span></li><li><span class="ln">2</span><span><b>Митохондрии</b> — энергообеспечение синтеза и секреции</span></li><li><span class="ln">3</span><span><b>Аргентофильные гранулы</b> — плотные секреторные гранулы с гормонами/аминами; восстанавливают соли серебра (отсюда название); выделяются в кровь через базальный полюс</span></li><li><span class="ln">5</span><span><b>Внутриклеточный сетчатый аппарат (комплекс Гольджи)</b> — упаковка гормонов в секреторные гранулы</span></li><li><span class="ln">6</span><span><b>Базальная мембрана</b> — через неё секрет поступает к капиллярам собственной пластинки слизистой</span></li><li><span class="ln">7</span><span><b>Ядро</b> — хранит генетическую информацию и управляет синтезом гормонов</span></li></ol>
+  </div>
+</article>
+<article class="card tem-card" id="t5">
+  <div class="card-imgs"><img loading="lazy" src="%D0%A2%D0%AD%D0%9C/05_%D0%9A%D0%BE%D0%BD%D1%86%D0%B5%D0%B2%D0%BE%D0%B9_%D0%BE%D1%82%D0%B4%D0%B5%D0%BB_%D0%BF%D0%BE%D0%B4%D0%B6%D0%B5%D0%BB%D1%83%D0%B4%D0%BE%D1%87%D0%BD%D0%BE%D0%B9.png" alt="Концевой отдел (ацинус) поджелудочной железы"></div>
+  <div class="prep-body">
+    <div class="prep-title">Концевой отдел (ацинус) поджелудочной железы</div>
+    <div class="prep-meta tem">ТЭМ · ×3 200 · по Экхольму с соавторами</div>
+    <div class="fn-head">Функция клетки</div>
+    <div class="cellfn"><div class="cellfn-name">Панкреатоцит (ацинозная клетка)</div><div>Синтезирует и выделяет пищеварительные ферменты панкреатического сока: трипсиноген, химотрипсиноген, панкреатическую амилазу, липазу, фосфолипазу, нуклеазы. В двенадцатиперстной кишке они расщепляют белки, жиры и углеводы. Базальная часть (гомогенная зона) базофильна — синтез; апикальная (зимогенная зона) оксифильна — хранение гранул.</div></div><div class="cellfn"><div class="cellfn-name">Центроацинозная клетка</div><div>Начальный отдел вставочного протока внутри ацинуса. Секретирует воду и бикарбонаты (под действием секретина) — делает сок щелочным и нейтрализует кислый химус из желудка.</div></div>
+    <div class="fn-head">Обозначения и их функция</div>
+    <ol class="prep-legend plain"><li><span class="ln">1</span><span><b>Апикальные части панкреатических клеток с гранулами секрета</b> — зимогенная зона: хранение неактивных проферментов и их выделение экзоцитозом в просвет ацинуса</span></li><li><span class="ln">2</span><span><b>Просвет концевого отдела</b> — собирает секрет и отводит его во вставочный проток</span></li><li><span class="ln">3</span><span><b>Центроацинозные эпителиальные клетки</b> — выделяют воду и HCO₃⁻, обеспечивают щелочную реакцию сока</span></li><li><span class="ln">4</span><span><b>Эндоплазматическая сеть в базальной части панкреатических клеток</b> — гомогенная зона: синтез ферментов на рибосомах гранулярной ЭПС (причина базофилии)</span></li><li><span class="ln">5</span><span><b>Кровеносный капилляр</b> — доставляет аминокислоты и O₂ для синтеза ферментов, а также гормоны-регуляторы (секретин, холецистокинин)</span></li></ol>
+  </div>
+</article>
+<article class="card tem-card" id="t6">
+  <div class="card-imgs"><img loading="lazy" src="%D0%A2%D0%AD%D0%9C/06_%D0%9F%D0%B0%D0%BD%D0%BA%D1%80%D0%B5%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9_%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B2%D0%BE%D0%BA.png" alt="Клетки панкреатического островка поджелудочной железы"></div>
+  <div class="prep-body">
+    <div class="prep-title">Клетки панкреатического островка поджелудочной железы</div>
+    <div class="prep-meta tem">ТЭМ · ×11 000 · по Винборну</div>
+    <div class="fn-head">Функция клетки</div>
+    <div class="cellfn"><div class="cellfn-name">A-клетка (ацидофильная, α)</div><div>Вырабатывает глюкагон — повышает уровень глюкозы в крови: запускает распад гликогена (гликогенолиз) и глюконеогенез в печени. Примерно 20–25 % клеток островка.</div></div><div class="cellfn"><div class="cellfn-name">B-клетка (базофильная, β)</div><div>Вырабатывает инсулин — снижает уровень глюкозы в крови: усиливает захват глюкозы клетками, синтез гликогена и жиров. Самые многочисленные клетки островка (~70 %).</div></div>
+    <div class="fn-head">Обозначения и их функция</div>
+    <ol class="prep-legend plain"><li><span class="ln">1</span><span><b>Ацидофильная инсулярная клетка (клетка A)</b> — секреция глюкагона; гранулы плотные, круглые, с узким светлым ободком</span></li><li><span class="ln">2</span><span><b>Базофильная инсулярная клетка (клетка B)</b> — секреция инсулина; гранулы с кристаллоидным центром и широким светлым ободком</span></li><li><span class="ln">3</span><span><b>Внутриклеточный сетчатый аппарат (комплекс Гольджи)</b> — упаковка гормонов в гранулы (в B-клетках — начало превращения проинсулина в инсулин)</span></li><li><span class="ln">4</span><span><b>Секреторные гранулы</b> — хранение гормонов и их выделение экзоцитозом в кровь</span></li><li><span class="ln">5</span><span><b>Липоидные гранулы</b> — липидные включения — энергетический и пластический запас клетки</span></li><li><span class="ln">6</span><span><b>Базальная мембрана</b> — отделяет эндокриноциты от капилляра; через неё гормоны переходят в кровь</span></li><li><span class="ln">7</span><span><b>Ядро эндотелиальной клетки кровеносного капилляра</b> — капилляры островка фенестрированные — гормоны быстро поступают в кровоток</span></li></ol>
+  </div>
+</article>
+<article class="card tem-card" id="t7">
+  <div class="card-imgs"><img loading="lazy" src="%D0%A2%D0%AD%D0%9C/07_%D0%96%D0%B5%D0%BB%D1%87%D0%BD%D1%8B%D0%B9_%D0%BA%D0%B0%D0%BF%D0%B8%D0%BB%D0%BB%D1%8F%D1%80.png" alt="Желчный капилляр печени аксолотля"></div>
+  <div class="prep-body">
+    <div class="prep-title">Желчный капилляр печени аксолотля</div>
+    <div class="prep-meta tem">ТЭМ · ×30 000 · по Ю. С. Ченцову</div>
+    <div class="fn-head">Функция клетки</div>
+    <div class="cellfn"><div class="cellfn-name">Гепатоцит (билиарный полюс)</div><div>Желчный капилляр не имеет собственной стенки — это щель между желобками двух соседних гепатоцитов. Гепатоцит образует и выделяет желчь (желчные кислоты, билирубин, холестерин) в желчный капилляр; кроме того, синтезирует белки плазмы, запасает гликоген, обезвреживает токсины и участвует в обмене липидов.</div></div>
+    <div class="fn-head">Обозначения и их функция</div>
+    <ol class="prep-legend plain"><li><span class="ln">1</span><span><b>Просвет желчного капилляра</b> — собирает желчь и отводит её к периферии дольки — в холангиолы и междольковые желчные протоки</span></li><li><span class="ln">2</span><span><b>Клеточные микроворсинки</b> — увеличивают поверхность гепатоцита, через которую выделяется желчь</span></li><li><span class="ln">3</span><span><b>Замыкательные пластинки</b> — плотные контакты изолируют желчь от межклеточного пространства и крови (при их повреждении желчь попадает в кровь — желтуха)</span></li><li><span class="ln">4</span><span><b>Границы между клетками</b> — межклеточные контакты соседних гепатоцитов, образующих печёночную балку</span></li><li><span class="ln">5</span><span><b>Гранулы гликогена</b> — запас глюкозы; при её недостатке в крови расщепляются (гликогенолиз)</span></li></ol>
+  </div>
+</article>
+<article class="card tem-card" id="t8">
+  <div class="card-imgs"><img loading="lazy" src="%D0%A2%D0%AD%D0%9C/08_%D0%A1%D0%B8%D0%BD%D1%83%D1%81%D0%BE%D0%B8%D0%B4%D0%BD%D1%8B%D0%B9_%D0%BA%D0%B0%D0%BF%D0%B8%D0%BB%D0%BB%D1%8F%D1%80.png" alt="Синусоидный кровеносный капилляр печени"></div>
+  <div class="prep-body">
+    <div class="prep-title">Синусоидный кровеносный капилляр печени</div>
+    <div class="prep-meta tem">ТЭМ · ×27 000 · по Жезекей</div>
+    <div class="fn-head">Функция клетки</div>
+    <div class="cellfn"><div class="cellfn-name">Эндотелиоцит синусоида</div><div>Плоские клетки с порами (фенестрами), базальной мембраны почти нет — свободный обмен плазмы с гепатоцитами через перисинусоидальное пространство (Диссе).</div></div><div class="cellfn"><div class="cellfn-name">Звёздчатый макрофаг (клетка Купфера)</div><div>Фагоцитирует старые эритроциты, бактерии и эндотоксины, поступающие с кровью воротной вены; участвует в иммунной защите и обмене железа.</div></div><div class="cellfn"><div class="cellfn-name">Гепатоцит</div><div>Забирает из крови синусоида питательные вещества и токсины, отдаёт в кровь белки плазмы, глюкозу, липопротеины.</div></div>
+    <div class="fn-head">Обозначения и их функция</div>
+    <ol class="prep-legend plain"><li><span class="ln">1</span><span><b>Синусоидный кровеносный капилляр</b> — широкий капилляр, по которому смешанная кровь (воротная вена + печёночная артерия) медленно течёт к центральной вене — обмен веществ с гепатоцитами</span></li><li><span class="ln">2</span><span><b>Звёздчатая эндотелиальная клетка (купферовская)</b> — фагоцитоз и очищение крови от старых эритроцитов, микробов и частиц</span></li><li><span class="ln">3</span><span><b>Ретикулиновые волокна</b> — опорный каркас стенки синусоида и печёночных балок в пространстве Диссе</span></li><li><span class="ln">4</span><span><b>Пиноцитозные пузырьки</b> — перенос жидкости и макромолекул через клетку (трансцитоз)</span></li><li><span class="ln">5</span><span><b>Микроворсинки печёночной клетки</b> — обращены в пространство Диссе; увеличивают поверхность обмена гепатоцита с плазмой крови</span></li><li><span class="ln">6</span><span><b>Митохондрии</b> — энергия для синтетических процессов гепатоцита, окислительные реакции, начальные этапы синтеза мочевины</span></li><li><span class="ln">7</span><span><b>Лизосома</b> — внутриклеточное переваривание, аутофагия, накопление ферритина (депо железа)</span></li><li><span class="ln">8</span><span><b>Зернистый тип эндоплазматической сети</b> — синтез белков плазмы крови: альбуминов, фибриногена, протромбина</span></li><li><span class="ln">9</span><span><b>Незернистый тип эндоплазматической сети</b> — синтез гликогена, холестерина и желчных кислот; обезвреживание ядов и лекарств (цитохром P450)</span></li></ol>
+  </div>
+</article>
+</section>
+</main>
+</div>
+
+<div class="lightbox" id="lightbox" hidden>
+  <div class="lightbox-stage" id="lightboxStage">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Закрыть" title="Закрыть (Esc)">✕</button>
+    <img id="lightboxImg" src="" alt="">
+    <div class="lightbox-bar">
+      <button id="lightboxZoomOut" aria-label="Уменьшить" title="Уменьшить">−</button>
+      <input type="range" id="lightboxZoomRange" min="20" max="400" step="1" value="100">
+      <button id="lightboxZoomIn" aria-label="Увеличить" title="Увеличить">+</button>
+      <span class="lightbox-zoom-label" id="lightboxZoomLabel">100%</span>
+      <button id="lightboxZoomReset" title="Сбросить масштаб">1:1</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var tabs = document.querySelectorAll('nav.tabs button');
+  var panels = {prep: document.getElementById('panel-prep'), tem: document.getElementById('panel-tem')};
+  tabs.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      tabs.forEach(function(b){ b.setAttribute('aria-selected', 'false'); });
+      btn.setAttribute('aria-selected', 'true');
+      Object.keys(panels).forEach(function(k){ panels[k].hidden = (k !== btn.dataset.tab); });
+      window.scrollTo({top:0, behavior:'instant'});
+    });
+  });
+
+  // ---- Лайтбокс с зумом ----
+  var lightbox = document.getElementById('lightbox');
+  var stage = document.getElementById('lightboxStage');
+  var lbImg = document.getElementById('lightboxImg');
+  var zoomRange = document.getElementById('lightboxZoomRange');
+  var zoomLabel = document.getElementById('lightboxZoomLabel');
+
+  var scale = 1, panX = 0, panY = 0, naturalFitScale = 1;
+  var dragging = false, dragStartX = 0, dragStartY = 0, panStartX = 0, panStartY = 0;
+
+  function applyTransform(){
+    lbImg.style.transform = 'translate(' + panX + 'px,' + panY + 'px) scale(' + scale + ')';
+    var pct = Math.round((scale / naturalFitScale) * 100);
+    zoomLabel.textContent = pct + '%';
+    zoomRange.value = Math.max(20, Math.min(400, pct));
+  }
+
+  function clampPan(){
+    var stageRect = stage.getBoundingClientRect();
+    var w = lbImg.naturalWidth * scale, h = lbImg.naturalHeight * scale;
+    var maxX = Math.max(0, (w - stageRect.width) / 2);
+    var maxY = Math.max(0, (h - stageRect.height) / 2);
+    panX = Math.max(-maxX, Math.min(maxX, panX));
+    panY = Math.max(-maxY, Math.min(maxY, panY));
+  }
+
+  function setScale(newScale, cx, cy){
+    var stageRect = stage.getBoundingClientRect();
+    if(cx === undefined){ cx = stageRect.width / 2; cy = stageRect.height / 2; }
+    var prevScale = scale;
+    newScale = Math.max(naturalFitScale * 0.2, Math.min(naturalFitScale * 4, newScale));
+    var ratio = newScale / prevScale;
+    panX = (panX - (cx - stageRect.width / 2)) * ratio + (cx - stageRect.width / 2);
+    panY = (panY - (cy - stageRect.height / 2)) * ratio + (cy - stageRect.height / 2);
+    scale = newScale;
+    clampPan();
+    applyTransform();
+  }
+
+  function fitToStage(){
+    if(!lbImg.naturalWidth || !lbImg.naturalHeight) return;
+    var stageRect = stage.getBoundingClientRect();
+    var fw = stageRect.width / lbImg.naturalWidth;
+    var fh = stageRect.height / lbImg.naturalHeight;
+    naturalFitScale = Math.min(fw, fh, 1);
+    scale = naturalFitScale;
+    panX = 0; panY = 0;
+    applyTransform();
+  }
+
+  var scrollLockY = 0;
+
+  function openLightbox(src, alt){
+    lbImg.alt = alt || '';
+    lbImg.onload = fitToStage;
+    lbImg.src = src;
+    lightbox.hidden = false;
+    scrollLockY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = (-scrollLockY) + 'px';
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    // Cached images can finish decoding before/without firing onload — retry on the next frames.
+    requestAnimationFrame(function(){
+      fitToStage();
+      requestAnimationFrame(fitToStage);
+    });
+  }
+
+  function closeLightbox(){
+    lightbox.hidden = true;
+    lbImg.src = '';
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    window.scrollTo(0, scrollLockY);
+  }
+
+  document.querySelectorAll('.card-imgs img').forEach(function(img){
+    img.addEventListener('click', function(){ openLightbox(img.src, img.alt); });
+  });
+
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', function(e){ if(e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', function(e){
+    if(lightbox.hidden) return;
+    if(e.key === 'Escape') closeLightbox();
+    if(e.key === '+' || e.key === '=') setScale(scale * 1.2);
+    if(e.key === '-') setScale(scale / 1.2);
+  });
+
+  document.getElementById('lightboxZoomIn').addEventListener('click', function(){ setScale(scale * 1.25); });
+  document.getElementById('lightboxZoomOut').addEventListener('click', function(){ setScale(scale / 1.25); });
+  document.getElementById('lightboxZoomReset').addEventListener('click', fitToStage);
+  zoomRange.addEventListener('input', function(){
+    setScale(naturalFitScale * (zoomRange.value / 100));
+  });
+
+  stage.addEventListener('wheel', function(e){
+    e.preventDefault();
+    var rect = stage.getBoundingClientRect();
+    var cx = e.clientX - rect.left, cy = e.clientY - rect.top;
+    setScale(scale * (e.deltaY < 0 ? 1.12 : 1/1.12), cx, cy);
+  }, {passive:false});
+
+  stage.addEventListener('pointerdown', function(e){
+    if(e.target.closest('button, input')) return;
+    dragging = true;
+    stage.classList.add('grabbing');
+    dragStartX = e.clientX; dragStartY = e.clientY;
+    panStartX = panX; panStartY = panY;
+    stage.setPointerCapture(e.pointerId);
+  });
+  stage.addEventListener('pointermove', function(e){
+    if(!dragging) return;
+    panX = panStartX + (e.clientX - dragStartX);
+    panY = panStartY + (e.clientY - dragStartY);
+    clampPan();
+    applyTransform();
+  });
+  ['pointerup','pointercancel'].forEach(function(ev){
+    stage.addEventListener(ev, function(){ dragging = false; stage.classList.remove('grabbing'); });
+  });
+
+  window.addEventListener('resize', function(){ if(!lightbox.hidden) fitToStage(); });
+
+})();
+</script>
+</body>
+</html>
